@@ -170,8 +170,10 @@ section{margin-bottom:28px;}
 .hub-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:18px;}
 @media (max-width:420px){.hub-grid{grid-template-columns:1fr;}}
 .hub-btn{
-  display:block; text-decoration:none; color:var(--text); background:var(--bg-card);
-  border:1px solid var(--line); border-radius:var(--radius); padding:18px 15px 16px;
+  display:grid; grid-template-columns:40px minmax(0,1fr); grid-template-rows:auto auto;
+  column-gap:10px; align-content:center; min-height:78px;
+  text-decoration:none; color:var(--text); background:var(--bg-card);
+  border:1px solid var(--line); border-radius:var(--radius); padding:13px 14px;
   box-shadow:var(--shadow); position:relative; overflow:hidden;
   transition:transform .18s ease, box-shadow .18s ease;
 }
@@ -188,9 +190,9 @@ section{margin-bottom:28px;}
 @media (hover:hover){
   .hub-btn:hover{transform:translateY(-3px); box-shadow:var(--shadow-lg);}
 }
-.hub-btn .hub-emoji{font-size:1.9rem; display:block; margin-bottom:8px; filter:drop-shadow(0 2px 3px rgba(0,0,0,.12));}
-.hub-btn .hub-title{font-weight:800; font-size:1.02rem;}
-.hub-btn .hub-desc{font-size:.78rem; color:var(--text-muted); margin-top:4px;}
+.hub-btn .hub-emoji{grid-column:1; grid-row:1 / 3; align-self:center; font-size:1.55rem; display:block; filter:drop-shadow(0 2px 3px rgba(0,0,0,.12));}
+.hub-btn .hub-title{grid-column:2; grid-row:1; display:block; font-weight:800; font-size:.94rem;}
+.hub-btn .hub-desc{grid-column:2; grid-row:2; display:block; font-size:.76rem; color:var(--text-muted); margin-top:2px; line-height:1.4;}
 
 .day-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:9px;}
 @media (max-width:420px){.day-grid{grid-template-columns:repeat(2,1fr);}}
@@ -230,7 +232,7 @@ section{margin-bottom:28px;}
 .legend{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:14px;}
 
 .dash-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
-@media (max-width:460px){.dash-grid{grid-template-columns:1fr;}}
+@media (max-width:460px){.dash-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 .stat{background:var(--bg-soft); border-radius:var(--radius-sm); padding:12px 13px; position:relative; overflow:hidden;}
 .stat::after{content:"🌊"; position:absolute; right:6px; bottom:2px; font-size:1.6rem; opacity:.15;}
 .stat .num{font-size:1.5rem; font-weight:800; background:linear-gradient(90deg,var(--ocean-deep),var(--ocean)); -webkit-background-clip:text; background-clip:text; color:transparent; position:relative; z-index:1;}
@@ -244,7 +246,7 @@ section{margin-bottom:28px;}
   content:"⚠️"; position:absolute; right:10px; top:8px; font-size:1.8rem; opacity:.35;
 }
 .warn-day span{display:block; font-size:.76rem; font-weight:600; opacity:.94; margin-top:3px; position:relative; z-index:1;}
-.dday{display:inline-flex; align-items:center; gap:4px; font-size:.76rem; font-weight:700; background:rgba(255,255,255,.22); padding:3px 10px; border-radius:20px;}
+.dday{display:inline-flex; flex:0 0 auto; align-items:center; gap:4px; white-space:nowrap; font-size:.76rem; font-weight:700; background:rgba(255,255,255,.22); padding:3px 10px; border-radius:20px;}
 .dday::before{content:"🌅";}
 
 /* ---- Day detail page ---- */
@@ -336,9 +338,20 @@ input[type=checkbox]:checked + label{color:var(--text-muted); text-decoration:li
 .resv-row:last-of-type{border-bottom:none;}
 .resv-row b{color:var(--text-muted); font-weight:700; font-size:.78rem;}
 .map-row{display:flex; gap:8px; align-items:center; margin-top:11px; flex-wrap:wrap;}
-.map-btn{border:1px solid var(--line); background:var(--bg-soft); color:var(--text-muted); padding:8px 13px; border-radius:20px; font-size:.78rem; font-weight:700; cursor:not-allowed;}
+.map-btn{display:inline-flex; align-items:center; min-height:38px; border:1px solid var(--opt-line); background:var(--opt-bg); color:var(--opt-fg); padding:8px 13px; border-radius:8px; font-size:.78rem; font-weight:700; text-decoration:none;}
 .addr-copy{font-size:.78rem; background:transparent; border:1px dashed var(--ocean); color:var(--ocean-deep); padding:7px 12px; border-radius:20px; cursor:pointer; text-align:left; font-weight:600;}
 .addr-copy:active{background:var(--opt-bg); transform:scale(.97);}
+.route-tools{margin:14px 0 18px; padding:12px; border:1px solid var(--line); border-radius:var(--radius-sm); background:var(--bg-card);}
+.route-tools__title{font-size:.83rem; font-weight:800; margin-bottom:8px;}
+.route-tools__links{display:flex; flex-wrap:wrap; gap:7px;}
+.route-tools__links .map-btn{flex:1 1 155px; justify-content:center; text-align:center;}
+.route-tools details{margin-top:10px; font-size:.79rem; color:var(--text-muted);}
+.route-tools summary{cursor:pointer; font-weight:700;}
+.route-address{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 0; border-bottom:1px dashed var(--line);}
+.route-address:last-child{border-bottom:0;}
+.route-address span{overflow-wrap:anywhere;}
+.route-address .addr-copy{flex:0 0 auto; border-radius:8px;}
+.route-note{font-size:.72rem; color:var(--text-muted); margin:8px 0 0;}
 
 /* ---- tabs (immigration) ---- */
 .tabbar{display:flex; gap:6px; margin-bottom:12px; background:var(--bg-soft); padding:5px; border-radius:20px;}
@@ -349,16 +362,16 @@ input[type=checkbox]:checked + label{color:var(--text-muted); text-decoration:li
 .immigration-legacy{display:none;}
 #view-immigration > section > :not(#immigration-accordion){display:none!important;}
 .imm-controls{display:flex; gap:8px; margin:10px 0 14px;}
-.imm-controls button{flex:1; min-height:40px; border:1px solid var(--line); border-radius:10px; background:#fff; color:var(--ink); font:inherit; font-size:.82rem; font-weight:700;}
-.imm-section{margin:10px 0; border:1px solid var(--line); border-radius:12px; background:#fff; overflow:hidden;}
+.imm-controls button{flex:1; min-height:40px; border:1px solid var(--line); border-radius:10px; background:var(--bg-card); color:var(--text); font:inherit; font-size:.82rem; font-weight:700;}
+.imm-section{margin:10px 0; border:1px solid var(--line); border-radius:12px; background:var(--bg-card); overflow:hidden;}
 .imm-section>summary{display:flex; align-items:center; min-height:56px; padding:0 14px; cursor:pointer; font-weight:800; list-style:none;}
 .imm-section>summary::-webkit-details-marker{display:none;}
-.imm-section>summary::after{content:'+'; margin-left:auto; font-size:1.3rem; color:var(--teal);}
+.imm-section>summary::after{content:'+'; margin-left:auto; font-size:1.3rem; color:var(--ocean-deep);}
 .imm-section[open]>summary::after{content:'−';}
 .imm-section-body{padding:0 12px 14px;}
 .imm-person-tabs{display:grid; grid-template-columns:1fr 1fr; gap:6px; margin:4px 0 12px; padding:4px; border-radius:10px; background:var(--bg-soft);}
-.imm-person-tab{min-height:38px; border:0; border-radius:8px; background:transparent; color:var(--muted); font:inherit; font-size:.82rem; font-weight:800;}
-.imm-person-tab.active{background:#fff; color:var(--teal); box-shadow:0 1px 5px rgba(0,0,0,.08);}
+.imm-person-tab{min-height:38px; border:0; border-radius:8px; background:transparent; color:var(--text-muted); font:inherit; font-size:.82rem; font-weight:800;}
+.imm-person-tab.active{background:var(--bg-card); color:var(--ocean-deep); box-shadow:0 1px 5px rgba(0,0,0,.08);}
 .imm-person-panel{display:none;}
 .imm-person-panel.active{display:block;}
 .imm-person-panel .card{margin:0; box-shadow:none; border:0; padding:0; background:transparent;}
@@ -438,32 +451,6 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
   <!-- ============ HOME ============ -->
   <section class="view" id="view-home">
     <section>
-      <h2 class="section-title"><span class="emoji">📋</span>여행 개요 요약</h2>
-      <p class="section-sub">2026.10.16(금) ~ 2026.10.26(월) · Oahu only · 스케줄은 예약 확정 정보 기준이며 임의로 변경되지 않습니다.</p>
-
-      <div class="card">
-        <div class="dash-grid">
-          <div class="stat"><div class="num">9건</div><div class="lbl">확정 예약 (항공1·호텔3·렌터카1·액티비티/공연4)</div></div>
-          <div class="stat"><div class="num">2곳</div><div class="lbl">예약 필요 (다이아몬드헤드 10/17 · 하나우마베이 10/22)</div></div>
-          <div class="stat"><div class="num">11박</div><div class="lbl">DAY0~DAY11, 하와이 체류 10/16~10/25</div></div>
-          <div class="stat"><div class="num">YP151 / YP152</div><div class="lbl">Air Premia 왕복 항공편</div></div>
-        </div>
-        <div class="warn-day">
-          ⚠️ 가장 주의할 날: 10월 20일 (화)
-          <span>쿠알로아 UTV 09:30 체크인 마감 08:45 → 노스쇼어 → 16:40 할레이바 절대 출발 → 19:00 Thrifty 렌터카 반납. 지연 시 Shark's Cove부터 생략.</span>
-        </div>
-      </div>
-
-      <div class="legend">
-        <span class="badge ok">확정</span>
-        <span class="badge need">예약 필요</span>
-        <span class="badge opt">선택</span>
-        <span class="badge excl">제외</span>
-        <span class="badge free">자유</span>
-      </div>
-    </section>
-
-    <section>
       <h2 class="section-title"><span class="emoji">🧭</span>바로가기</h2>
       <div class="hub-grid">
         <a class="hub-btn" href="#schedule">
@@ -474,7 +461,7 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
         <a class="hub-btn" href="#confirmed">
           <span class="hub-emoji">✅</span>
           <span class="hub-title">확정 예약 내역</span>
-          <span class="hub-desc">항공·호텔 3곳·렌터카·액티비티/공연 예약 상세</span>
+          <span class="hub-desc">항공·호텔 3곳·렌터카·공연 예약 상세</span>
         </a>
         <a class="hub-btn" href="#immigration">
           <span class="hub-emoji">🛂</span>
@@ -484,13 +471,38 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
         <a class="hub-btn" href="#emergency">
           <span class="hub-emoji">🚨</span>
           <span class="hub-title">비상·안전 가이드</span>
-          <span class="hub-desc">911, 병원/약국, 해변·스노클링·UTV 안전, 팁 가이드</span>
+          <span class="hub-desc">911, 병원/약국, 임신 중 휴식·해변 안전, 팁 가이드</span>
         </a>
         <a class="hub-btn" href="#checklist">
           <span class="hub-emoji">☑️</span>
           <span class="hub-title">체크리스트</span>
-          <span class="hub-desc">출국 전·기내·위탁수하물·결제·체크아웃 공통 체크</span>
+          <span class="hub-desc">서류·기내·준비물·식품·건강·결제 체크</span>
         </a>
+      </div>
+    </section>
+    <section>
+      <h2 class="section-title"><span class="emoji">📋</span>여행 개요 요약</h2>
+      <p class="section-sub">2026.10.16(금) ~ 2026.10.26(월) · 오아후 9박 · 현지 시간 기준</p>
+
+      <div class="card">
+        <div class="dash-grid">
+          <div class="stat"><div class="num">7건</div><div class="lbl">가이드 기재 예약 (왕복항공1·호텔3·렌터카1·공연2)</div></div>
+          <div class="stat"><div class="num">2건</div><div class="lbl">예약 취소: 패러세일링·쿠알로아 UTV</div></div>
+          <div class="stat"><div class="num">9박</div><div class="lbl">하와이 체류 10/16~10/25</div></div>
+          <div class="stat"><div class="num">YP151 / YP152</div><div class="lbl">Air Premia 왕복 항공편</div></div>
+        </div>
+        <div class="warn-day">
+          ⚠️ 가장 주의할 날: 10월 20일 (화)
+          <span>호오말루히아 식물원 → 노스쇼어 → 16:00 전후 할레이바 출발 목표 → 19:00 Thrifty 렌터카 반납. 해변 경유지는 컨디션과 교통에 따라 생략.</span>
+        </div>
+      </div>
+
+      <div class="legend">
+        <span class="badge ok">확정</span>
+        <span class="badge need">예약 필요</span>
+        <span class="badge opt">선택</span>
+        <span class="badge excl">제외</span>
+        <span class="badge free">자유</span>
       </div>
     </section>
 
@@ -522,12 +534,12 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <div class="day-grid">
         <a class="day-btn" href="#day-00"><div class="dnum">DAY 0</div><div class="ddate">10/16(금)</div><div class="dtheme">인천 출국</div></a>
         <a class="day-btn" href="#day-01"><div class="dnum">DAY 1</div><div class="ddate">10/16(금)</div><div class="dtheme">하와이 도착</div></a>
-        <a class="day-btn" href="#day-02"><div class="dnum">DAY 2</div><div class="ddate">10/17(토)</div><div class="dtheme">KCC·다이아몬드헤드</div></a>
-        <a class="day-btn" href="#day-03"><div class="dnum">DAY 3</div><div class="ddate">10/18(일)</div><div class="dtheme">패러세일링</div></a>
+        <a class="day-btn" href="#day-02"><div class="dnum">DAY 2</div><div class="ddate">10/17(토)</div><div class="dtheme">KCC·프라이드 퍼레이드</div></a>
+        <a class="day-btn" href="#day-03"><div class="dnum">DAY 3</div><div class="ddate">10/18(일)</div><div class="dtheme">아기용품점·별 관찰</div></a>
         <a class="day-btn" href="#day-04"><div class="dnum">DAY 4</div><div class="ddate">10/19(월)</div><div class="dtheme">렌터카 Day1·동부해안</div></a>
-        <a class="day-btn" href="#day-05"><div class="dnum">DAY 5</div><div class="ddate">10/20(화)</div><div class="dtheme">쿠알로아·노스쇼어 ⚠️</div></a>
+        <a class="day-btn" href="#day-05"><div class="dnum">DAY 5</div><div class="ddate">10/20(화)</div><div class="dtheme">식물원·노스쇼어</div></a>
         <a class="day-btn" href="#day-06"><div class="dnum">DAY 6</div><div class="ddate">10/21(수)</div><div class="dtheme">휴식·아우아나</div></a>
-        <a class="day-btn" href="#day-07"><div class="dnum">DAY 7</div><div class="ddate">10/22(목)</div><div class="dtheme">하나우마베이</div></a>
+        <a class="day-btn" href="#day-07"><div class="dnum">DAY 7</div><div class="ddate">10/22(목)</div><div class="dtheme">호놀룰루 미술관</div></a>
         <a class="day-btn" href="#day-08"><div class="dnum">DAY 8</div><div class="ddate">10/23(금)</div><div class="dtheme">호텔이동·훌라쇼</div></a>
         <a class="day-btn" href="#day-09"><div class="dnum">DAY 9</div><div class="ddate">10/24(토)</div><div class="dtheme">자유쇼핑</div></a>
         <a class="day-btn" href="#day-10"><div class="dnum">DAY 10</div><div class="ddate">10/25(일)</div><div class="dtheme">체크아웃·출국</div></a>
@@ -552,6 +564,7 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <div class="kv"><b>숙소</b>기내</div>
       <div class="kv"><b>이동</b>인천공항 제1터미널 → HNL</div>
     </div>
+    <div class="route-tools" data-route-day="day-00"></div>
     <div class="callout warning">보조배터리와 여분 리튬배터리는 반드시 기내수하물에 넣습니다.</div>
 
     <div class="subhead">⏱ 오늘 시간표</div>
@@ -602,6 +615,8 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <div class="kv"><b>숙소</b>Waikiki Circle Hotel by Castle</div>
       <div class="kv"><b>이동</b>HNL T2 → Waikiki Circle Hotel</div>
     </div>
+    <div class="route-tools" data-route-day="day-01"></div>
+    <div class="callout note">도착 시 임신 15주차. 입국과 이동이 길어지면 해변 산책·카페는 생략하고 호텔에서 쉬세요.</div>
 
     <div class="subhead">⏱ 오늘 시간표</div>
     <div class="tablewrap"><table>
@@ -639,13 +654,13 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <li><input type="checkbox" id="d1-3"><label for="d1-3">우버·택시 승차장 확인</label></li>
       <li><input type="checkbox" id="d1-4"><label for="d1-4">호텔 체크인 또는 짐 보관</label></li>
       <li><input type="checkbox" id="d1-5"><label for="d1-5">생수 구매</label></li>
-      <li><input type="checkbox" id="d1-6"><label for="d1-6">다음날 KCC·다이아몬드헤드 준비</label></li>
+      <li><input type="checkbox" id="d1-6-v2"><label for="d1-6-v2">다음날 KCC·퍼레이드 이동 확인</label></li>
       <li><input type="checkbox" id="d1-7"><label for="d1-7">늦은 야간 일정 금지</label></li>
     </ul>
 
     <div class="daynav">
       <a href="#day-00">← 이전 날<span class="sub">DAY 0 · 인천 출국</span></a>
-      <a href="#day-02">다음 날 →<span class="sub">DAY 2 · KCC·다이아몬드헤드</span></a>
+      <a href="#day-02">다음 날 →<span class="sub">DAY 2 · KCC·퍼레이드</span></a>
     </div>
   </section>
 
@@ -654,18 +669,19 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
     <div class="day-hero">
       <span class="day-tag">DAY 2</span>
       <div class="day-date">10월 17일 (토)</div>
-      <div class="day-theme">KCC 파머스마켓 · 다이아몬드헤드</div>
+      <div class="day-theme">KCC 파머스마켓 · 카피올라니 공원 · 프라이드 퍼레이드</div>
     </div>
     <div class="must3">
-      <div class="item"><span class="num">1</span>07:20 KCC 파머스마켓 (확정 일정)</div>
-      <div class="item"><span class="num">2</span>09:00 다이아몬드헤드 예약시간 입장 (예약 필요)</div>
-      <div class="item"><span class="num">3</span>09:00~10:45 정상 왕복 트레킹 (예약 필요)</div>
+      <div class="item"><span class="num">1</span>07:30 KCC 파머스마켓 개장</div>
+      <div class="item"><span class="num">2</span>점심 후 호텔 휴식·이동 여유 확보</div>
+      <div class="item"><span class="num">3</span>15:00 매직아일랜드 출발 퍼레이드 관람</div>
     </div>
     <div class="grid2">
       <div class="kv"><b>숙소</b>Waikiki Circle Hotel by Castle</div>
-      <div class="kv"><b>이동</b>호텔 → KCC → Diamond Head → 와이키키</div>
+      <div class="kv"><b>이동</b>호텔 → KCC → 카피올라니 공원 → 호텔 → 매직아일랜드 인근</div>
     </div>
-    <div class="callout warning">다이아몬드헤드 비거주자 입장권 예약 필요. 물·모자·선크림·운동화 필수.</div>
+    <div class="route-tools" data-route-day="day-02"></div>
+    <div class="callout warning">퍼레이드 주변은 교통 통제와 혼잡이 예상됩니다. 차에서 내려 짧게 이동할 수 있는 지점을 현장에서 확인하고, 오래 서 있지 마세요.</div>
 
     <div class="subhead">⏱ 오늘 시간표</div>
     <div class="tablewrap"><table>
@@ -673,16 +689,16 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <tbody>
         <tr><td class="time">06:30</td><td>기상·세면</td><td>권장</td></tr>
         <tr><td class="time">07:00</td><td>호텔 출발</td><td>권장</td></tr>
-        <tr><td class="time">07:20~08:30</td><td>KCC 파머스마켓 구경·아침식사</td><td><span class="badge ok">확정 일정</span></td></tr>
-        <tr><td class="time">08:30~08:50</td><td>다이아몬드헤드 입구 이동</td><td>권장</td></tr>
-        <tr><td class="time risk">09:00</td><td>다이아몬드헤드 예약 시간 기준 입장</td><td><span class="badge need">예약 필요</span></td></tr>
-        <tr><td class="time">09:00~10:45</td><td>정상 왕복 트레킹</td><td><span class="badge need">예약 필요</span></td></tr>
-        <tr><td class="time">10:45~11:15</td><td>휴식·음료</td><td>권장</td></tr>
-        <tr><td class="time">11:15~11:45</td><td>와이키키 호텔 복귀</td><td>권장</td></tr>
-        <tr><td class="time">11:45~13:00</td><td>샤워·휴식</td><td>권장</td></tr>
-        <tr><td class="time">13:00~14:00</td><td>점심식사</td><td>권장</td></tr>
-        <tr><td class="time">14:00~16:30</td><td>호텔 또는 와이키키 비치 자유시간</td><td><span class="badge free">자유</span></td></tr>
-        <tr><td class="time">16:30~18:00</td><td>카피올라니 공원·와이키키 산책</td><td><span class="badge opt">선택</span></td></tr>
+        <tr><td class="time">07:30~08:30</td><td>KCC 파머스마켓 구경·아침식사</td><td><span class="badge ok">계획</span></td></tr>
+        <tr><td class="time">08:30~09:00</td><td>카피올라니 공원으로 이동</td><td>권장</td></tr>
+        <tr><td class="time">09:00~10:00</td><td>공원에서 짧게 산책·휴식</td><td><span class="badge opt">컨디션 따라</span></td></tr>
+        <tr><td class="time">10:00~11:00</td><td>와이키키 호텔 복귀</td><td>권장</td></tr>
+        <tr><td class="time">11:00~12:00</td><td>객실 휴식</td><td>권장</td></tr>
+        <tr><td class="time">12:00~13:00</td><td>점심식사</td><td>권장</td></tr>
+        <tr><td class="time">13:00~13:30</td><td>호텔에서 쉬고 이동 준비</td><td>권장</td></tr>
+        <tr><td class="time">13:30~14:30</td><td>알라모아나 방향 이동·관람 위치 확인</td><td>교통 통제에 따라 조정</td></tr>
+        <tr><td class="time risk">15:00</td><td>프라이드 퍼레이드 시작 관람</td><td><span class="badge ok">계획</span></td></tr>
+        <tr><td class="time">16:00 전후</td><td>컨디션에 맞춰 호텔 복귀·휴식</td><td>권장</td></tr>
         <tr><td class="time">18:00~19:30</td><td>저녁식사</td><td>권장</td></tr>
         <tr><td class="time">20:00 이후</td><td>호텔 휴식</td><td>권장</td></tr>
       </tbody>
@@ -692,29 +708,26 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
     <div class="tablewrap"><table>
       <thead><tr><th>구분</th><th>1순위</th><th>대안</th></tr></thead>
       <tbody>
-        <tr><td>아침</td><td>KCC Farmers' Market 현장 식사</td><td>과일·주스·커피 중심</td></tr>
+        <tr><td>아침</td><td>KCC Farmers' Market 현장 식사</td><td>가볍게 먹고 생수 챙기기</td></tr>
         <tr><td>점심</td><td>Marugame Udon Waikiki</td><td>Duke's Waikiki</td></tr>
         <tr><td>오후 카페</td><td>Hawaiian Aroma 또는 Kona Coffee</td><td>피곤하면 생략</td></tr>
         <tr><td>저녁</td><td>Duke's Waikiki (아직 못 갔을 경우)</td><td>자유식</td></tr>
       </tbody>
     </table></div>
-    <p class="section-sub">등산 전이므로 과식하지 않기 · 식사/과일-주스/등산 후 간식으로 나눠 구성 권장.</p>
+    <div class="callout note">쉬어가기: 공원 산책은 생략 가능하지만 오후 호텔 휴식은 유지하세요. 퍼레이드는 가까운 관람 지점에서 짧게 보고 복귀해도 됩니다.</div>
 
     <div class="subhead">🎒 준비물·안전</div>
     <ul class="checklist">
-      <li><input type="checkbox" id="d2-1"><label for="d2-1">다이아몬드헤드 예약 확인</label></li>
-      <li><input type="checkbox" id="d2-2"><label for="d2-2">운동화</label></li>
-      <li><input type="checkbox" id="d2-3"><label for="d2-3">모자</label></li>
-      <li><input type="checkbox" id="d2-4"><label for="d2-4">선크림</label></li>
-      <li><input type="checkbox" id="d2-5"><label for="d2-5">생수</label></li>
-      <li><input type="checkbox" id="d2-6"><label for="d2-6">작은 간식</label></li>
-      <li><input type="checkbox" id="d2-7"><label for="d2-7">KCC에서 과식하지 않기</label></li>
-      <li><input type="checkbox" id="d2-8"><label for="d2-8">어지럼증·두통·메스꺼움 시 즉시 휴식</label></li>
+      <li><input type="checkbox" id="v2-d2-1"><label for="v2-d2-1">KCC 07:30 개장 확인</label></li>
+      <li><input type="checkbox" id="v2-d2-2"><label for="v2-d2-2">생수·모자·편한 신발</label></li>
+      <li><input type="checkbox" id="v2-d2-3"><label for="v2-d2-3">오후 이동 전 호텔 휴식</label></li>
+      <li><input type="checkbox" id="v2-d2-4"><label for="v2-d2-4">퍼레이드 당일 교통 통제 확인</label></li>
+      <li><input type="checkbox" id="v2-d2-5"><label for="v2-d2-5">혼잡하거나 몸이 불편하면 일찍 복귀</label></li>
     </ul>
 
     <div class="daynav">
       <a href="#day-01">← 이전 날<span class="sub">DAY 1 · 하와이 도착</span></a>
-      <a href="#day-03">다음 날 →<span class="sub">DAY 3 · 패러세일링</span></a>
+      <a href="#day-03">다음 날 →<span class="sub">DAY 3 · 아기용품점·별 관찰</span></a>
     </div>
   </section>
 
@@ -723,37 +736,35 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
     <div class="day-hero">
       <span class="day-tag">DAY 3</span>
       <div class="day-date">10월 18일 (일)</div>
-      <div class="day-theme">패러세일링 · 와이키키 휴식</div>
+      <div class="day-theme">SoHa Keiki · Hopscotch · 옥상 별 관찰</div>
     </div>
     <div class="must3">
-      <div class="item"><span class="num">1</span>08:00 Waikiki Circle Hotel 출발 (필수)</div>
-      <div class="item"><span class="num">2</span>08:30 Ala Wai Boat Harbor 체크인 (확정)</div>
-      <div class="item"><span class="num">3</span>09:00 패러세일링 출발 (확정, 지각 시 환불 불가 가능)</div>
+      <div class="item"><span class="num">1</span>09:30 SoHa Keiki 방문</div>
+      <div class="item"><span class="num">2</span>11:00 Hopscotch 방문</div>
+      <div class="item"><span class="num">3</span>18:30 로열 하와이안 센터 옥상 별 관찰</div>
     </div>
     <div class="grid2">
       <div class="kv"><b>숙소</b>Waikiki Circle Hotel by Castle</div>
-      <div class="kv"><b>이동</b>호텔 → Ala Wai Boat Harbor → 호텔</div>
+      <div class="kv"><b>이동</b>호텔 → SoHa Keiki → Hopscotch → 호텔 → Royal Hawaiian Center</div>
     </div>
-    <div class="callout warning">체크인 08:30에 늦지 않기. 늦어서 배를 놓치면 환불되지 않을 수 있습니다. 업체의 공식 운항 여부를 확인하세요.</div>
-    <div class="callout note">예비일: 10/18 기상 취소 시 10/21 오전 → 10/23 오전 → 10/24 오전 순으로 변경 요청.</div>
+    <div class="route-tools" data-route-day="day-03"></div>
+    <div class="callout note">별 관찰은 18:30~20:30 무료 선착순 행사입니다. 운영 변경 가능성이 있으니 당일 확인하세요. 두 매장 방문 후 오후에는 호텔 휴식을 유지합니다.</div>
 
     <div class="subhead">⏱ 오늘 시간표</div>
     <div class="tablewrap"><table>
       <thead><tr><th>시간</th><th>일정</th><th>상태</th></tr></thead>
       <tbody>
-        <tr><td class="time">06:50</td><td>기상</td><td>권장</td></tr>
-        <tr><td class="time">07:10~07:40</td><td>가벼운 아침식사</td><td>권장</td></tr>
-        <tr><td class="time">07:40~08:00</td><td>수영복·편한 복장 준비</td><td>권장</td></tr>
-        <tr><td class="time risk">08:00</td><td>Waikiki Circle Hotel 출발</td><td>필수</td></tr>
-        <tr><td class="time">08:20~08:30</td><td>Ala Wai Boat Harbor 도착·체크인</td><td><span class="badge ok">확정</span></td></tr>
-        <tr><td class="time risk">09:00~10:00</td><td>1000' Line Super Flight 패러세일링</td><td><span class="badge ok">확정</span></td></tr>
-        <tr><td class="time">10:00~10:30</td><td>항구 → 호텔 이동</td><td>권장</td></tr>
-        <tr><td class="time">10:30~11:30</td><td>샤워·휴식</td><td>권장</td></tr>
-        <tr><td class="time">12:00~13:00</td><td>점심식사</td><td>권장</td></tr>
-        <tr><td class="time">13:00~15:30</td><td>와이키키 비치 또는 카페</td><td><span class="badge free">자유</span></td></tr>
-        <tr><td class="time">15:30~17:30</td><td>호텔 휴식</td><td>권장</td></tr>
-        <tr><td class="time">18:00~19:30</td><td>저녁식사</td><td>권장</td></tr>
-        <tr><td class="time">20:30 이후</td><td>다음날 이동 준비·짐 정리</td><td>필수</td></tr>
+        <tr><td class="time">08:00~09:00</td><td>기상·아침식사</td><td>권장</td></tr>
+        <tr><td class="time">09:30~10:30</td><td>SoHa Keiki, Waikiki Beach Walk</td><td><span class="badge ok">계획</span></td></tr>
+        <tr><td class="time">10:30~11:00</td><td>South Shore Market으로 이동</td><td>권장</td></tr>
+        <tr><td class="time">11:00~12:00</td><td>Hopscotch 방문</td><td><span class="badge ok">계획</span></td></tr>
+        <tr><td class="time">12:00~13:00</td><td>인근 점심식사</td><td>권장</td></tr>
+        <tr><td class="time">13:00~13:40</td><td>Waikiki Circle Hotel 복귀</td><td>권장</td></tr>
+        <tr><td class="time">13:40~16:30</td><td>호텔 휴식</td><td>권장</td></tr>
+        <tr><td class="time">17:00~18:00</td><td>이른 저녁식사</td><td>권장</td></tr>
+        <tr><td class="time risk">18:30</td><td>Royal Hawaiian Center A동 4층 별 관찰</td><td><span class="badge ok">계획</span></td></tr>
+        <tr><td class="time">19:30~20:30</td><td>컨디션에 맞춰 호텔 복귀</td><td>권장</td></tr>
+        <tr><td class="time">20:30 이후</td><td>다음날 렌터카 서류·짐 정리</td><td>필수</td></tr>
       </tbody>
     </table></div>
 
@@ -761,28 +772,23 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
     <div class="tablewrap"><table>
       <thead><tr><th>구분</th><th>1순위</th><th>대안</th></tr></thead>
       <tbody>
-        <tr><td>출발 전</td><td>객실 간편식 (바나나·빵·요거트)</td><td>기름진 음식·과도한 커피·술 피하기</td></tr>
-        <tr><td>브런치</td><td>Hawaiian Aroma Caffé Ilikai 인근점</td><td>Marugame Udon</td></tr>
-        <tr><td>저녁</td><td>Duke's Waikiki (아직 방문 안했다면)</td><td>자유식</td></tr>
+        <tr><td>아침</td><td>호텔 근처 간편식</td><td>객실에서 먹어도 좋음</td></tr>
+        <tr><td>점심</td><td>South Shore Market 인근 자유식</td><td>피곤하면 호텔 근처로 이동</td></tr>
+        <tr><td>저녁</td><td>Royal Hawaiian Center 인근 이른 식사</td><td>호텔 근처 간단식</td></tr>
       </tbody>
     </table></div>
+    <div class="callout note">쉬어가기: 두 매장은 같은 날 방문하되 쇼핑 시간을 줄일 수 있습니다. 오후 휴식을 우선하고 피곤하면 별 관찰은 생략하세요.</div>
 
     <div class="subhead">🎒 준비물·안전</div>
     <ul class="checklist">
-      <li><input type="checkbox" id="d3-1"><label for="d3-1">패러세일링 예약 확인</label></li>
-      <li><input type="checkbox" id="d3-2"><label for="d3-2">08:30 체크인</label></li>
-      <li><input type="checkbox" id="d3-3"><label for="d3-3">수영복 또는 젖어도 되는 복장</label></li>
-      <li><input type="checkbox" id="d3-4"><label for="d3-4">멀미약 필요 여부 확인</label></li>
-      <li><input type="checkbox" id="d3-5"><label for="d3-5">선크림</label></li>
-      <li><input type="checkbox" id="d3-6"><label for="d3-6">방수팩</label></li>
-      <li><input type="checkbox" id="d3-7"><label for="d3-7">귀중품 최소화</label></li>
-      <li><input type="checkbox" id="d3-8"><label for="d3-8">과식 금지</label></li>
-      <li><input type="checkbox" id="d3-9"><label for="d3-9">업체 운항 여부 확인</label></li>
-      <li><input type="checkbox" id="d3-10"><label for="d3-10">다음날 렌터카 서류 준비</label></li>
+      <li><input type="checkbox" id="v2-d3-1"><label for="v2-d3-1">두 매장 영업시간 확인</label></li>
+      <li><input type="checkbox" id="v2-d3-2"><label for="v2-d3-2">오후 호텔 휴식</label></li>
+      <li><input type="checkbox" id="v2-d3-3"><label for="v2-d3-3">별 관찰 당일 운영 여부 확인</label></li>
+      <li><input type="checkbox" id="v2-d3-4"><label for="v2-d3-4">다음날 렌터카 서류·짐 준비</label></li>
     </ul>
 
     <div class="daynav">
-      <a href="#day-02">← 이전 날<span class="sub">DAY 2 · KCC·다이아몬드헤드</span></a>
+      <a href="#day-02">← 이전 날<span class="sub">DAY 2 · KCC·퍼레이드</span></a>
       <a href="#day-04">다음 날 →<span class="sub">DAY 4 · 렌터카 Day1·동부해안</span></a>
     </div>
   </section>
@@ -803,7 +809,8 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <div class="kv"><b>숙소 이동</b>Waikiki Circle → The Modern Honolulu</div>
       <div class="kv"><b>동선</b>공항 → 마카푸우 → 와이마날로 → 카일루아 → 라니카이 → The Modern</div>
     </div>
-    <div class="callout note">하나우마베이는 월요일 휴장으로 10/22로 이동됨 (10/19 아님).</div>
+    <div class="route-tools" data-route-day="day-04"></div>
+    <div class="callout note">마카푸우는 도로변 전망대에 잠시 서는 일정입니다. 라니카이는 선택 일정이며, 주차가 어렵거나 피곤하면 카일루아에서 바로 호텔로 이동하세요.</div>
 
     <div class="subhead">⏱ 오늘 시간표</div>
     <div class="tablewrap"><table>
@@ -858,47 +865,44 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
     </ul>
 
     <div class="daynav">
-      <a href="#day-03">← 이전 날<span class="sub">DAY 3 · 패러세일링</span></a>
-      <a href="#day-05">다음 날 →<span class="sub">DAY 5 · 쿠알로아·노스쇼어 ⚠️</span></a>
+      <a href="#day-03">← 이전 날<span class="sub">DAY 3 · 아기용품점·별 관찰</span></a>
+      <a href="#day-05">다음 날 →<span class="sub">DAY 5 · 식물원·노스쇼어</span></a>
     </div>
   </section>
 
   <!-- ============ DAY 5 ============ -->
   <section class="view" id="view-day-05">
     <div class="day-hero">
-      <span class="day-tag">DAY 5 · 최고 주의일</span>
+      <span class="day-tag">DAY 5 · 장거리 이동일</span>
       <div class="day-date">10월 20일 (화)</div>
-      <div class="day-theme">쿠알로아 UTV · 노스쇼어 · 렌터카 반납</div>
+      <div class="day-theme">호오말루히아 식물원 · 노스쇼어 · 렌터카 반납</div>
     </div>
     <div class="must3">
-      <div class="item"><span class="num">1</span>08:45 UTV 투어 체크인 마감 (확정)</div>
-      <div class="item"><span class="num">2</span>16:40 할레이바 절대 출발 마감 (필수)</div>
+      <div class="item"><span class="num">1</span>09:00~10:30 호오말루히아 식물원</div>
+      <div class="item"><span class="num">2</span>16:00 전후 할레이바 출발 목표</div>
       <div class="item"><span class="num">3</span>19:00 Thrifty 렌터카 반납 완료 (확정)</div>
     </div>
     <div class="grid2">
       <div class="kv"><b>숙소</b>Hilton Vacation Club The Modern Honolulu</div>
-      <div class="kv"><b>위험</b>가장 빡빡한 날. 지연 시 Shark's Cove부터 생략</div>
+      <div class="kv"><b>동선</b>식물원 → 북쪽 해안 → 할레이바 → 공항 렌터카 반납</div>
     </div>
+    <div class="route-tools" data-route-day="day-05"></div>
+    <div class="callout warning">식물원과 노스쇼어를 같은 날 유지합니다. 해변 정차는 선택이고 19:00 반납이 우선입니다. 이동 예상시간은 당일 교통에 맞춰 다시 확인하세요.</div>
 
     <div class="subhead">⏱ 오늘 시간표</div>
     <div class="tablewrap"><table>
       <thead><tr><th>시간</th><th>일정</th><th>상태</th></tr></thead>
       <tbody>
-        <tr><td class="time">06:10</td><td>기상</td><td>필수</td></tr>
-        <tr><td class="time">06:30</td><td>아침식사</td><td>권장</td></tr>
-        <tr><td class="time">07:00</td><td>The Modern Honolulu 출발</td><td>필수</td></tr>
-        <tr><td class="time">07:00~08:15</td><td>Kualoa Ranch 이동</td><td>권장</td></tr>
-        <tr><td class="time">08:15~08:40</td><td>주차·화장실·예약 확인</td><td>필수</td></tr>
-        <tr><td class="time risk">08:45</td><td>UTV 투어 체크인 마감</td><td><span class="badge ok">확정</span></td></tr>
-        <tr><td class="time">09:30~11:30</td><td>2-Hour UTV Raptor Tour</td><td><span class="badge ok">확정</span></td></tr>
-        <tr><td class="time">11:30~12:00</td><td>세면·옷 정리</td><td>권장</td></tr>
-        <tr><td class="time">12:00~12:20</td><td>Aunty Pat's Café 점심</td><td>권장</td></tr>
-        <tr><td class="time">12:20</td><td>노스쇼어 방향 출발 목표</td><td>권장</td></tr>
-        <tr><td class="time">13:30~14:00</td><td>Shark's Cove</td><td><span class="badge opt">선택</span></td></tr>
-        <tr><td class="time">14:10~14:35</td><td>Sunset Beach</td><td><span class="badge opt">선택</span></td></tr>
-        <tr><td class="time">14:50~15:30</td><td>Laniakea Beach</td><td><span class="badge opt">선택</span></td></tr>
-        <tr><td class="time">15:45~16:25</td><td>Haleiwa·Matsumoto Shave Ice</td><td><span class="badge opt">선택</span></td></tr>
-        <tr><td class="time risk">16:30~16:40</td><td>공항 방향 출발</td><td>필수</td></tr>
+        <tr><td class="time">06:30~07:15</td><td>기상·아침식사·생수 준비</td><td>권장</td></tr>
+        <tr><td class="time">07:45</td><td>The Modern Honolulu 출발</td><td>권장</td></tr>
+        <tr><td class="time">09:00~10:30</td><td>호오말루히아 식물원, 짧은 산책·휴식</td><td><span class="badge ok">계획</span></td></tr>
+        <tr><td class="time">10:30~11:45</td><td>북쪽 해안 방향 드라이브·중간 휴식</td><td>예상</td></tr>
+        <tr><td class="time">11:45~12:30</td><td>카후쿠 일대 점심</td><td>권장</td></tr>
+        <tr><td class="time">12:45~13:05</td><td>Sunset Beach 전망</td><td><span class="badge opt">선택</span></td></tr>
+        <tr><td class="time">13:20~13:40</td><td>Shark's Cove 전망</td><td><span class="badge opt">선택</span></td></tr>
+        <tr><td class="time">14:10~14:30</td><td>Laniakea Beach 전망</td><td><span class="badge opt">선택</span></td></tr>
+        <tr><td class="time">15:00~15:50</td><td>Haleiwa 산책·간식</td><td><span class="badge ok">계획</span></td></tr>
+        <tr><td class="time risk">16:00 전후</td><td>공항 방향 출발, 교통상황에 따라 더 일찍 출발</td><td>반납 시간 우선</td></tr>
         <tr><td class="time">17:40~18:20</td><td>공항 인근 주유·차량 정리</td><td>필수</td></tr>
         <tr><td class="time">18:20~18:40</td><td>Thrifty 반납 장소 진입</td><td>필수</td></tr>
         <tr><td class="time risk">19:00</td><td>렌터카 반납 완료</td><td><span class="badge ok">확정</span></td></tr>
@@ -911,36 +915,31 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <thead><tr><th>구분</th><th>1순위</th><th>대안</th></tr></thead>
       <tbody>
         <tr><td>아침</td><td>호텔 간편식</td><td>전날 준비</td></tr>
-        <tr><td>점심</td><td>Aunty Pat's Café & Grill</td><td>Uncle Abe's Poke</td></tr>
+        <tr><td>점심</td><td>카후쿠 일대 자유식</td><td>이동이 지연되면 식사 장소 조정</td></tr>
         <tr><td>할레이바 간식</td><td>Matsumoto Shave Ice</td><td>줄 길면 생략</td></tr>
-        <tr><td>예외 식사</td><td>Giovanni's Shrimp Truck</td><td>쿠알로아 점심 실패 시만</td></tr>
         <tr><td>저녁</td><td>호텔 인근 간단식</td><td>ABC Store 또는 테이크아웃</td></tr>
       </tbody>
     </table></div>
 
     <div class="skip-order">
-      <b>⏭ 지연 시 생략 순서</b>
+      <b>⏭ 피곤하거나 지연될 때 생략 순서</b>
       <ol>
         <li>Shark's Cove</li>
+        <li>Laniakea Beach</li>
         <li>Sunset Beach</li>
-        <li>할레이바 체류시간 단축</li>
-        <li>Laniakea는 가능하면 유지</li>
+        <li>할레이바 체류시간 단축 후 공항으로 이동</li>
       </ol>
     </div>
-    <div class="callout warning">16:40 이후에도 할레이바에 있으면 주유와 반납이 위험해집니다. 19:00 Thrifty 반납을 최우선으로 하세요.</div>
+    <div class="callout note">쉬어가기: 식물원과 할레이바를 중심으로 보고, 해변은 차에서 가까운 전망만 짧게 즐기세요. 휴식·화장실 시간을 확보하고 19:00 반납을 최우선으로 합니다.</div>
 
     <div class="subhead">🎒 준비물·안전</div>
     <ul class="checklist">
-      <li><input type="checkbox" id="d5-1"><label for="d5-1">Kualoa 예약 확인서</label></li>
-      <li><input type="checkbox" id="d5-2"><label for="d5-2">사진 신분증</label></li>
-      <li><input type="checkbox" id="d5-3"><label for="d5-3">운동화</label></li>
-      <li><input type="checkbox" id="d5-4"><label for="d5-4">먼지 묻어도 되는 옷</label></li>
-      <li><input type="checkbox" id="d5-5"><label for="d5-5">선글라스</label></li>
-      <li><input type="checkbox" id="d5-6"><label for="d5-6">마스크 또는 얼굴 가릴 천</label></li>
-      <li><input type="checkbox" id="d5-7"><label for="d5-7">물티슈·여벌 상의·작은 수건</label></li>
-      <li><input type="checkbox" id="d5-8"><label for="d5-8">생수</label></li>
-      <li><input type="checkbox" id="d5-9"><label for="d5-9">공항 근처 주유·영수증 보관</label></li>
-      <li><input type="checkbox" id="d5-10"><label for="d5-10">반납 전 차량 재촬영</label></li>
+      <li><input type="checkbox" id="v2-d5-1"><label for="v2-d5-1">운전면허증·렌터카 계약서</label></li>
+      <li><input type="checkbox" id="v2-d5-2"><label for="v2-d5-2">편한 신발·모자·생수</label></li>
+      <li><input type="checkbox" id="v2-d5-3"><label for="v2-d5-3">식물원 운영 여부·날씨 확인</label></li>
+      <li><input type="checkbox" id="v2-d5-4"><label for="v2-d5-4">휴식·화장실 들를 곳 확인</label></li>
+      <li><input type="checkbox" id="v2-d5-5"><label for="v2-d5-5">공항 근처 주유·영수증 보관</label></li>
+      <li><input type="checkbox" id="v2-d5-6"><label for="v2-d5-6">반납 전 차량 재촬영</label></li>
     </ul>
 
     <div class="daynav">
@@ -957,7 +956,7 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <div class="day-theme">휴식 · 'Auana 공연</div>
     </div>
     <div class="must3">
-      <div class="item"><span class="num">1</span>17:30~18:30 이른 저녁, 18:15까지 종료 (필수)</div>
+      <div class="item"><span class="num">1</span>17:15~18:15 이른 저녁 (필수)</div>
       <div class="item"><span class="num">2</span>19:10~19:20 공연장 도착 (필수)</div>
       <div class="item"><span class="num">3</span>20:00 Cirque du Soleil 'Auana (확정)</div>
     </div>
@@ -965,7 +964,8 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <div class="kv"><b>숙소</b>Hilton Vacation Club The Modern Honolulu</div>
       <div class="kv"><b>장소</b>OUTRIGGER Waikiki Beachcomber Hotel</div>
     </div>
-    <div class="callout note">전날 장거리 운전 후 회복일. 10/18 패러세일링 기상 취소 시 오늘 오전으로 대체 가능.</div>
+    <div class="route-tools" data-route-day="day-06"></div>
+    <div class="callout note">전날 장거리 운전 후 회복일입니다. 낮 일정은 모두 선택이며, 공연 전 호텔 휴식을 우선하세요.</div>
 
     <div class="subhead">⏱ 오늘 시간표</div>
     <div class="tablewrap"><table>
@@ -977,7 +977,7 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
         <tr><td class="time">12:00~13:00</td><td>점심식사</td><td>권장</td></tr>
         <tr><td class="time">13:00~15:00</td><td>와이키키 카페·산책</td><td><span class="badge free">자유</span></td></tr>
         <tr><td class="time">15:00~17:00</td><td>호텔 복귀·휴식</td><td>권장</td></tr>
-        <tr><td class="time risk">17:30~18:30</td><td>이른 저녁식사</td><td>필수</td></tr>
+        <tr><td class="time risk">17:15~18:15</td><td>이른 저녁식사</td><td>필수</td></tr>
         <tr><td class="time">18:30~19:00</td><td>공연장 출발</td><td>권장</td></tr>
         <tr><td class="time risk">19:10~19:20</td><td>공연장 도착</td><td>필수</td></tr>
         <tr><td class="time risk">20:00</td><td>Cirque du Soleil 'Auana</td><td><span class="badge ok">확정</span></td></tr>
@@ -1006,8 +1006,8 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
     </ul>
 
     <div class="daynav">
-      <a href="#day-05">← 이전 날<span class="sub">DAY 5 · 쿠알로아·노스쇼어 ⚠️</span></a>
-      <a href="#day-07">다음 날 →<span class="sub">DAY 7 · 하나우마베이</span></a>
+      <a href="#day-05">← 이전 날<span class="sub">DAY 5 · 식물원·노스쇼어</span></a>
+      <a href="#day-07">다음 날 →<span class="sub">DAY 7 · 호놀룰루 미술관</span></a>
     </div>
   </section>
 
@@ -1016,31 +1016,27 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
     <div class="day-hero">
       <span class="day-tag">DAY 7</span>
       <div class="day-date">10월 22일 (목)</div>
-      <div class="day-theme">하나우마베이 스노클링</div>
+      <div class="day-theme">호놀룰루 미술관 · 오후 휴식</div>
     </div>
     <div class="must3">
-      <div class="item"><span class="num">1</span>07:30 전후 하나우마베이 도착 (예약 필요)</div>
-      <div class="item"><span class="num">2</span>13:00~15:30 호텔 휴식 (필수, 체력 회복)</div>
-      <div class="item"><span class="num">3</span>인명구조원에게 조류 상태 확인 (안전)</div>
+      <div class="item"><span class="num">1</span>10:00 호놀룰루 미술관 관람 시작</div>
+      <div class="item"><span class="num">2</span>13:00~15:30 호텔 휴식</div>
+      <div class="item"><span class="num">3</span>오후 산책은 컨디션에 따라 선택</div>
     </div>
     <div class="grid2">
       <div class="kv"><b>숙소</b>Hilton Vacation Club The Modern Honolulu</div>
-      <div class="kv"><b>이동</b>우버 또는 교통 포함 상품</div>
+      <div class="kv"><b>이동</b>호텔 → 호놀룰루 미술관 → 호텔</div>
     </div>
-    <div class="callout warning">하나우마베이는 월·화 휴장으로 10/19에서 10/22로 이동. 예약이 아직 필요합니다.</div>
+    <div class="route-tools" data-route-day="day-07"></div>
+    <div class="callout note">미술관 오전 방문은 확정한 계획입니다. 목요일 운영시간은 10:00~18:00이지만 당일 변동을 확인하세요.</div>
 
     <div class="subhead">⏱ 오늘 시간표</div>
     <div class="tablewrap"><table>
       <thead><tr><th>시간</th><th>일정</th><th>상태</th></tr></thead>
       <tbody>
-        <tr><td class="time">05:50</td><td>기상</td><td>권장</td></tr>
-        <tr><td class="time">06:20</td><td>간단한 아침식사</td><td>권장</td></tr>
-        <tr><td class="time">06:50</td><td>호텔 출발</td><td>예약 시간에 따라 조정</td></tr>
-        <tr><td class="time risk">07:30 전후</td><td>하나우마베이 도착</td><td><span class="badge need">예약 필요</span></td></tr>
-        <tr><td class="time">07:30~08:00</td><td>체크인·교육 영상</td><td><span class="badge need">예약 필요</span></td></tr>
-        <tr><td class="time">08:00~10:30</td><td>스노클링</td><td><span class="badge need">예약 필요</span></td></tr>
-        <tr><td class="time">10:30~11:00</td><td>샤워·정리</td><td>권장</td></tr>
-        <tr><td class="time">11:00~11:40</td><td>와이키키 복귀</td><td>권장</td></tr>
+        <tr><td class="time">08:00~09:00</td><td>여유롭게 기상·아침식사</td><td>권장</td></tr>
+        <tr><td class="time">09:30~10:00</td><td>택시 또는 우버로 미술관 이동</td><td>권장</td></tr>
+        <tr><td class="time">10:00~12:00</td><td>호놀룰루 미술관 관람, 앉아서 쉬는 시간 포함</td><td><span class="badge ok">계획</span></td></tr>
         <tr><td class="time">12:00~13:00</td><td>점심식사</td><td>권장</td></tr>
         <tr><td class="time">13:00~15:30</td><td>호텔 휴식</td><td>필수</td></tr>
         <tr><td class="time">15:30~17:30</td><td>와이키키 자유시간</td><td><span class="badge free">자유</span></td></tr>
@@ -1053,24 +1049,19 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
     <div class="tablewrap"><table>
       <thead><tr><th>구분</th><th>1순위</th><th>대안</th></tr></thead>
       <tbody>
-        <tr><td>아침</td><td>전날 준비한 간편식</td><td>무스비·바나나·생수</td></tr>
-        <tr><td>점심</td><td>Paia Fish Market Waikiki</td><td>Musubi Cafe Iyasume</td></tr>
-        <tr><td>저녁</td><td>Barefoot Beach Cafe</td><td>Duke's Waikiki</td></tr>
+        <tr><td>아침</td><td>호텔 근처 간편식</td><td>객실에서 먹어도 좋음</td></tr>
+        <tr><td>점심</td><td>미술관 카페 또는 근처 식사</td><td>호텔 복귀 후 식사</td></tr>
+        <tr><td>저녁</td><td>호텔 근처 자유식</td><td>피곤하면 테이크아웃</td></tr>
       </tbody>
     </table></div>
+    <div class="callout note">쉬어가기: 관람은 1~2시간으로 줄일 수 있습니다. 오후 자유시간은 생략하고 호텔에서 쉬어도 됩니다.</div>
 
     <div class="subhead">🎒 준비물·안전</div>
     <ul class="checklist">
-      <li><input type="checkbox" id="d7-1"><label for="d7-1">하나우마베이 예약 확인</label></li>
-      <li><input type="checkbox" id="d7-2"><label for="d7-2">이동수단 확인</label></li>
-      <li><input type="checkbox" id="d7-3"><label for="d7-3">수영복·래시가드</label></li>
-      <li><input type="checkbox" id="d7-4"><label for="d7-4">스노클 마스크·스노클·오리발</label></li>
-      <li><input type="checkbox" id="d7-5"><label for="d7-5">수건·방수팩</label></li>
-      <li><input type="checkbox" id="d7-6"><label for="d7-6">리프세이프 선크림</label></li>
-      <li><input type="checkbox" id="d7-7"><label for="d7-7">생수·작은 간식</label></li>
-      <li><input type="checkbox" id="d7-8"><label for="d7-8">인명구조원에게 조류 문의</label></li>
-      <li><input type="checkbox" id="d7-9"><label for="d7-9">두 사람이 항상 함께 움직이기</label></li>
-      <li><input type="checkbox" id="d7-10"><label for="d7-10">호흡곤란·어지럼증 시 즉시 중단</label></li>
+      <li><input type="checkbox" id="v2-d7-1"><label for="v2-d7-1">미술관 운영시간 확인</label></li>
+      <li><input type="checkbox" id="v2-d7-2"><label for="v2-d7-2">택시·우버 이동 경로 확인</label></li>
+      <li><input type="checkbox" id="v2-d7-3"><label for="v2-d7-3">생수·편한 신발</label></li>
+      <li><input type="checkbox" id="v2-d7-4"><label for="v2-d7-4">오후 호텔 휴식</label></li>
     </ul>
 
     <div class="daynav">
@@ -1087,7 +1078,7 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <div class="day-theme">호텔 이동 · Luana 훌라댄스쇼</div>
     </div>
     <div class="must3">
-      <div class="item"><span class="num">1</span>10:30 The Modern 체크아웃 (필수)</div>
+      <div class="item"><span class="num">1</span>10:00 The Modern 체크아웃 (확인 완료)</div>
       <div class="item"><span class="num">2</span>16:30 훌라댄스쇼 장소 대기 (필수)</div>
       <div class="item"><span class="num">3</span>17:00 Luana Waikiki Hotel 훌라댄스쇼 (확정)</div>
     </div>
@@ -1095,6 +1086,8 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <div class="kv"><b>숙소 이동</b>The Modern Honolulu → Luana Waikiki</div>
       <div class="kv"><b>선택</b>힐튼 금요일 불꽃놀이, 당일 운영 확인 후</div>
     </div>
+    <div class="route-tools" data-route-day="day-08"></div>
+    <div class="callout note">The Modern 체크아웃 10:00 확인 완료. Luana 객실 준비 전까지 짐을 맡기고, 오후 산책은 피곤하면 생략하세요.</div>
 
     <div class="subhead">⏱ 오늘 시간표</div>
     <div class="tablewrap"><table>
@@ -1102,9 +1095,9 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <tbody>
         <tr><td class="time">08:00</td><td>기상·아침식사</td><td>권장</td></tr>
         <tr><td class="time">09:00~10:00</td><td>짐 정리</td><td>필수</td></tr>
-        <tr><td class="time risk">10:30</td><td>The Modern 체크아웃</td><td>필수</td></tr>
-        <tr><td class="time">10:30~11:00</td><td>Luana Waikiki 이동</td><td><span class="badge ok">확정 호텔 이동</span></td></tr>
-        <tr><td class="time">11:00~11:20</td><td>호텔에 짐 보관</td><td>권장</td></tr>
+        <tr><td class="time risk">10:00</td><td>The Modern 체크아웃</td><td>확인 완료</td></tr>
+        <tr><td class="time">10:00~10:30</td><td>Luana Waikiki 이동</td><td><span class="badge ok">확정 호텔 이동</span></td></tr>
+        <tr><td class="time">10:30~11:00</td><td>호텔에 짐 보관</td><td>권장</td></tr>
         <tr><td class="time">11:30~13:00</td><td>점심식사</td><td>권장</td></tr>
         <tr><td class="time">13:00~15:00</td><td>주변 카페·산책</td><td><span class="badge opt">선택</span></td></tr>
         <tr><td class="time">15:00~15:30</td><td>객실 체크인</td><td>권장</td></tr>
@@ -1138,7 +1131,7 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
     </ul>
 
     <div class="daynav">
-      <a href="#day-07">← 이전 날<span class="sub">DAY 7 · 하나우마베이</span></a>
+      <a href="#day-07">← 이전 날<span class="sub">DAY 7 · 호놀룰루 미술관</span></a>
       <a href="#day-09">다음 날 →<span class="sub">DAY 9 · 자유쇼핑</span></a>
     </div>
   </section>
@@ -1159,7 +1152,9 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <div class="kv"><b>숙소</b>Luana Waikiki Hotel & Suites</div>
       <div class="kv"><b>쇼핑</b><span class="badge free">자유</span> 세부 동선·매장·구매목록은 이 가이드에서 제외</div>
     </div>
+    <div class="route-tools" data-route-day="day-09"></div>
     <div class="callout note">10월 24일 알라모아나 센터의 매장 추천, 쇼핑 동선, 구매 목록은 의도적으로 제외합니다. 이 날은 "직접 찾고 고르는 자유 쇼핑일"로 유지합니다.</div>
+    <div class="callout note">쉬어가기: 쇼핑 시간을 줄이거나 돈키호테 방문을 생략해도 됩니다. 다음날 출국 준비와 휴식을 우선하세요.</div>
 
     <div class="subhead">⏱ 오늘 시간표</div>
     <div class="tablewrap"><table>
@@ -1211,13 +1206,15 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
     </div>
     <div class="must3">
       <div class="item"><span class="num">1</span>08:00~09:00 최종 짐 정리 (필수)</div>
-      <div class="item"><span class="num">2</span>11:00 Luana Waikiki 체크아웃 (필수)</div>
+      <div class="item"><span class="num">2</span>11:00 호텔 출발 계획 · 체크아웃 마감 12:00</div>
       <div class="item"><span class="num">3</span>14:20 Air Premia YP152 출발 (확정)</div>
     </div>
     <div class="grid2">
       <div class="kv"><b>항공</b>YP152 14:20 HNL T2 출발 → 10/26 20:20 ICN T1 도착</div>
       <div class="kv"><b>이동</b>Luana Waikiki → HNL Terminal 2 (12:00 도착 목표)</div>
     </div>
+    <div class="route-tools" data-route-day="day-10"></div>
+    <div class="callout note">Luana의 체크아웃 마감은 12:00로 확인했습니다. 기존 계획대로 11:00 전후 출발하고, YP152 14:20 항공편은 유지합니다. 공항 이동시간은 당일 다시 확인하세요.</div>
 
     <div class="subhead">⏱ 오늘 시간표</div>
     <div class="tablewrap"><table>
@@ -1229,7 +1226,7 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
         <tr><td class="time">09:00~09:30</td><td>여권·항공권·지갑·전자기기 점검</td><td>필수</td></tr>
         <tr><td class="time">09:30~10:30</td><td>마지막 산책 또는 카페</td><td><span class="badge opt">선택</span></td></tr>
         <tr><td class="time">10:30</td><td>Luana Waikiki 복귀</td><td>필수</td></tr>
-        <tr><td class="time risk">11:00</td><td>체크아웃</td><td>필수</td></tr>
+        <tr><td class="time risk">11:00</td><td>계획상 체크아웃 (호텔 마감 12:00)</td><td>필수</td></tr>
         <tr><td class="time">11:00~11:20</td><td>우버 호출·짐 적재</td><td>권장</td></tr>
         <tr><td class="time">11:20~12:00</td><td>Luana Waikiki → HNL Terminal 2 이동</td><td>권장</td></tr>
         <tr><td class="time">12:00</td><td>호놀룰루 공항 도착</td><td>필수</td></tr>
@@ -1274,6 +1271,7 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <div class="kv"><b>이동</b>인천공항 → 귀가</div>
       <div class="kv"><b>주의</b>보험 청구 필요 영수증 분리</div>
     </div>
+    <div class="route-tools" data-route-day="day-11"></div>
 
     <div class="subhead">⏱ 오늘 시간표</div>
     <div class="tablewrap"><table>
@@ -1311,15 +1309,15 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
         <div class="resv-head"><div class="resv-title">✈️ Air Premia 항공권</div><span class="badge ok">확정</span></div>
         <div class="resv-row"><b>출국편</b><span>YP151 · 10/16(금) 22:30 ICN T1 → 12:20 HNL T2 (약 8시간50분)</span></div>
         <div class="resv-row"><b>귀국편</b><span>YP152 · 10/25(일) 14:20 HNL T2 → 10/26(월) 20:20 ICN T1 (약 11시간)</span></div>
-        <div class="callout tip" style="margin-top:8px; margin-bottom:0;">귀국일 Luana Waikiki 11:00 체크아웃 후 12:00 전후 HNL T2 도착 목표.</div>
+        <div class="callout tip" style="margin-top:8px; margin-bottom:0;">YP152는 기존 계획대로 유지합니다. 귀국일 Luana 체크아웃 마감은 12:00이며, 계획상 11:00 출발 후 12:00 전후 HNL T2 도착 목표입니다.</div>
       </div>
 
       <div class="resv-card">
         <div class="resv-head"><div class="resv-title">🏨 호텔 1 · Waikiki Circle Hotel by Castle</div><span class="badge ok">확정</span></div>
         <div class="resv-row"><b>숙박</b><span>2026.10.16 ~ 10.19</span></div>
-        <div class="resv-row"><b>역할</b><span>도착 직후 적응, KCC·다이아몬드헤드·패러세일링 전 숙소</span></div>
+        <div class="resv-row"><b>역할</b><span>도착 직후 적응, KCC·퍼레이드·아기용품점 구간 숙소</span></div>
         <div class="map-row">
-          <button class="map-btn" disabled title="문서에 실제 지도 URL이 없어 비활성 상태입니다">지도 열기</button>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=2464%20Kalakaua%20Ave%2C%20Honolulu%2C%20HI%2096815" target="_blank" rel="noopener noreferrer">지도 열기 ↗</a>
           <button class="addr-copy" data-copy="2464 Kalākaua Ave, Honolulu, HI 96815">📋 주소 복사: 2464 Kalākaua Ave, Honolulu, HI 96815</button>
         </div>
       </div>
@@ -1327,9 +1325,10 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       <div class="resv-card">
         <div class="resv-head"><div class="resv-title">🏨 호텔 2 · Hilton Vacation Club The Modern Honolulu</div><span class="badge ok">확정</span></div>
         <div class="resv-row"><b>숙박</b><span>2026.10.19 ~ 10.23</span></div>
-        <div class="resv-row"><b>역할</b><span>렌터카·쿠알로아·노스쇼어·아우아나·하나우마베이 구간 중심 숙소</span></div>
+        <div class="resv-row"><b>역할</b><span>렌터카·호오말루히아·노스쇼어·아우아나·미술관 구간 숙소</span></div>
+        <div class="resv-row"><b>체크아웃</b><span>2026.10.23 10:00 (확인 완료)</span></div>
         <div class="map-row">
-          <button class="map-btn" disabled title="문서에 실제 지도 URL이 없어 비활성 상태입니다">지도 열기</button>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=1775%20Ala%20Moana%20Blvd%2C%20Honolulu%2C%20HI%2096815" target="_blank" rel="noopener noreferrer">지도 열기 ↗</a>
           <button class="addr-copy" data-copy="1775 Ala Moana Blvd, Honolulu, HI 96815">📋 주소 복사: 1775 Ala Moana Blvd, Honolulu, HI 96815</button>
         </div>
       </div>
@@ -1338,8 +1337,9 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
         <div class="resv-head"><div class="resv-title">🏨 호텔 3 · Luana Waikiki Hotel & Suites</div><span class="badge ok">확정</span></div>
         <div class="resv-row"><b>숙박</b><span>2026.10.23 ~ 10.25</span></div>
         <div class="resv-row"><b>역할</b><span>마지막 숙소, 훌라댄스쇼(10/23 17:00), 알라모아나 자유쇼핑, 귀국 정리</span></div>
+        <div class="resv-row"><b>체크아웃</b><span>2026.10.25 마감 12:00 · 계획상 11:00 출발</span></div>
         <div class="map-row">
-          <button class="map-btn" disabled title="문서에 실제 지도 URL이 없어 비활성 상태입니다">지도 열기</button>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=2045%20Kalakaua%20Ave%2C%20Honolulu%2C%20HI%2096815" target="_blank" rel="noopener noreferrer">지도 열기 ↗</a>
           <button class="addr-copy" data-copy="2045 Kalākaua Ave, Honolulu, HI 96815">📋 주소 복사: 2045 Kalākaua Ave, Honolulu, HI 96815</button>
         </div>
       </div>
@@ -1350,34 +1350,14 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
         <div class="resv-row"><b>인수</b><span>2026.10.19 08:00 · Honolulu International Airport</span></div>
         <div class="resv-row"><b>반납</b><span>2026.10.20 19:00 · Honolulu International Airport</span></div>
         <div class="resv-row"><b>전화</b><span>+1-877-283-0898 (영업 05:30~23:59)</span></div>
-        <div class="callout warning" style="margin-top:8px; margin-bottom:0;">10/20 19:00 반납 확정 — 할레이바에서 늦어도 16:40에는 공항 방향 출발.</div>
+        <div class="callout warning" style="margin-top:8px; margin-bottom:0;">10/20 19:00 반납 확정 — 할레이바에서 16:00 전후 출발 목표. 당일 교통상황에 따라 더 일찍 출발하세요.</div>
         <div class="map-row">
-          <button class="map-btn" disabled title="문서에 실제 지도 URL이 없어 비활성 상태입니다">지도 열기</button>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Thrifty%20Car%20Rental%2C%20Honolulu%20International%20Airport" target="_blank" rel="noopener noreferrer">지도 열기 ↗</a>
           <button class="addr-copy" data-copy="Thrifty, Rodgers Blvd, Honolulu, HI 96819, United States">📋 주소 복사: Thrifty, Rodgers Blvd, Honolulu, HI 96819</button>
         </div>
       </div>
 
-      <div class="resv-card">
-        <div class="resv-head"><div class="resv-title">🪂 Hawaiian Parasail</div><span class="badge ok">확정</span></div>
-        <div class="resv-row"><b>날짜</b><span>2026.10.18(일) · 체크인 08:30 · 출발 09:00</span></div>
-        <div class="resv-row"><b>상품</b><span>1000' Line Super Flight, 성인 2명</span></div>
-        <div class="resv-row"><b>참가자</b><span>SIM GYU HYEON / OSHIMA YUI</span></div>
-        <div class="resv-row"><b>결제/예약번호</b><span>US$189.91 · 366031875</span></div>
-        <div class="resv-row"><b>운영 원칙</b><span>출발 30분 전 도착. 기상 취소 시 재예약/환불 조건 확인</span></div>
-        <div class="map-row">
-          <button class="map-btn" disabled title="문서에 실제 지도 URL이 없어 비활성 상태입니다">지도 열기</button>
-          <button class="addr-copy" data-copy="Ala Wai Boat Harbor, 1651 Ala Moana Blvd., Slip 600B, Honolulu, HI 96815">📋 주소 복사: 1651 Ala Moana Blvd., Slip 600B, Honolulu, HI 96815</button>
-        </div>
-      </div>
-
-      <div class="resv-card">
-        <div class="resv-head"><div class="resv-title">🏍️ Kualoa Ranch UTV</div><span class="badge ok">확정</span></div>
-        <div class="resv-row"><b>날짜</b><span>2026.10.20(화) · 2-Hour UTV Raptor Tour</span></div>
-        <div class="resv-row"><b>체크인 마감</b><span>08:45 · 투어 시작 09:30 · 종료 예상 11:30 전후</span></div>
-        <div class="resv-row"><b>확인번호</b><span>W2R8VB8V</span></div>
-        <div class="resv-row"><b>준비물</b><span>예약자명과 일치하는 사진 부착 신분증, 운동화, 먼지 묻어도 되는 옷</span></div>
-        <div class="callout warning" style="margin-top:8px; margin-bottom:0;">지각 시 환불·일정변경 불가 가능성. 예약자 전원이 함께 체크인.</div>
-      </div>
+      <div class="callout note">패러세일링과 쿠알로아 UTV는 예약 취소되어 일정과 확정 예약 목록에서 제외했습니다.</div>
 
       <div class="resv-card">
         <div class="resv-head"><div class="resv-title">🎪 Cirque du Soleil 'Auana</div><span class="badge ok">확정</span></div>
@@ -1442,11 +1422,11 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
           <div class="qa-mean">10月25日 エアプレミアYP152便</div>
         </div>
         <div class="qa-card">
-          <div class="qa-q">주요 일정 — Beaches, Diamond Head, Kualoa Ranch, North Shore, shopping, and shows</div>
-          <div class="qa-pron">🇰🇷 비치스, 다이아몬드 헤드, 쿠알로아 랜치, 노스 쇼어, 쇼핑, 앤드 쇼즈</div>
-          <div class="qa-mean">해변, 다이아몬드헤드, 쿠알로아 랜치, 노스쇼어, 쇼핑, 공연</div>
-          <div class="qa-pron">🇯🇵 ビーチズ、ダイヤモンドヘッド、クアロアランチ、ノースショア、ショッピング、アンド・ショーズ</div>
-          <div class="qa-mean">ビーチ、ダイヤモンドヘッド、クアロアランチ、ノースショア、ショッピング、ショー</div>
+          <div class="qa-q">주요 일정 — Beaches, a botanical garden, an art museum, the North Shore, shopping, and a show</div>
+          <div class="qa-pron">🇰🇷 비치스, 어 버태니컬 가든, 언 아트 뮤지엄, 더 노스 쇼어, 쇼핑, 앤드 어 쇼</div>
+          <div class="qa-mean">해변, 식물원, 미술관, 노스쇼어, 쇼핑, 공연</div>
+          <div class="qa-pron">🇯🇵 ビーチズ、ア・ボタニカル・ガーデン、アン・アート・ミュージアム、ザ・ノースショア、ショッピング、アンド・ア・ショー</div>
+          <div class="qa-mean">ビーチ、植物園、美術館、ノースショア、買い物、ショー</div>
         </div>
         <div class="qa-card">
           <div class="qa-q">여행 비용 — We are paying for the trip ourselves</div>
@@ -1535,9 +1515,9 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
           <div class="qa-q">Q. What will you do in Hawaii?</div>
           <div class="qa-pron">왓 윌 유 두 인 하와이?</div>
           <div class="qa-mean">하와이에서 무엇을 하실 건가요?</div>
-          <div class="qa-a" style="margin-top:8px;">A. We will visit beaches, Diamond Head, Kualoa Ranch, the North Shore, shopping centers, and shows.</div>
-          <div class="qa-pron">위 윌 비짓 비치스, 다이아몬드 헤드, 쿠알로아 랜치, 더 노스 쇼어, 쇼핑 센터스, 앤드 쇼즈.</div>
-          <div class="qa-mean">해변, 다이아몬드헤드, 쿠알로아 랜치, 노스쇼어, 쇼핑센터, 공연을 방문합니다.</div>
+          <div class="qa-a" style="margin-top:8px;">A. We will visit beaches, a botanical garden, an art museum, the North Shore, and see a show.</div>
+          <div class="qa-pron">위 윌 비짓 비치스, 어 버태니컬 가든, 언 아트 뮤지엄, 더 노스 쇼어, 앤드 씨 어 쇼.</div>
+          <div class="qa-mean">해변, 식물원, 미술관, 노스쇼어에 가고 공연을 볼 예정입니다.</div>
         </div>
         <div class="qa-card">
           <div class="qa-q">Q. What is your job?</div>
@@ -1704,9 +1684,9 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
               <div class="qa-q">Q. What are you planning to do in Hawaii?</div>
               <div class="qa-pron">왓 아 유 플래닝 투 두 인 하와이?</div>
               <div class="qa-mean">하와이에서 무엇을 할 예정인가요?</div>
-              <div class="qa-a" style="margin-top:8px;">A. We plan to visit the beaches, Kualoa Ranch, and the North Shore. We will also go shopping and see a show.</div>
-              <div class="qa-pron">위 플랜 투 비짓 더 비치즈, 쿠알로아 랜치, 앤드 더 노스 쇼어. 위 윌 올소 고 쇼핑 앤드 씨 어 쇼.</div>
-              <div class="qa-mean">해변, 쿠알로아 랜치, 노스쇼어에 가고 쇼핑과 공연 관람도 할 예정입니다.</div>
+              <div class="qa-a" style="margin-top:8px;">A. We plan to visit beaches, a botanical garden, an art museum, and the North Shore. We will also go shopping and see a show.</div>
+              <div class="qa-pron">위 플랜 투 비짓 비치스, 어 버태니컬 가든, 언 아트 뮤지엄, 앤드 더 노스 쇼어. 위 윌 올소 고 쇼핑 앤드 씨 어 쇼.</div>
+              <div class="qa-mean">해변, 식물원, 미술관, 노스쇼어에 가고 쇼핑과 공연도 볼 예정입니다.</div>
             </div>
             <div class="qa-card">
               <div class="qa-q">Q. Are you going to work or study in the United States?</div>
@@ -1801,9 +1781,9 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
           <div class="qa-q">Q. What will you do in Hawaii?</div>
           <div class="qa-pron">ワット・ウィル・ユー・ドゥー・イン・ハワイ？</div>
           <div class="qa-mean">ハワイで何をしますか？</div>
-          <div class="qa-a" style="margin-top:8px;">A. We will visit beaches, Diamond Head, Kualoa Ranch, the North Shore, shopping centers, and shows.</div>
-          <div class="qa-pron">ウィー・ウィル・ヴィジット・ビーチズ、ダイヤモンドヘッド、クアロアランチ、ザ・ノースショア、ショッピングセンターズ、アンド・ショーズ。</div>
-          <div class="qa-mean">ビーチ、ダイヤモンドヘッド、クアロアランチ、ノースショア、ショッピングセンター、ショーに行きます。</div>
+          <div class="qa-a" style="margin-top:8px;">A. We will visit beaches, a botanical garden, an art museum, the North Shore, and see a show.</div>
+          <div class="qa-pron">ウィー・ウィル・ヴィジット・ビーチズ、ア・ボタニカル・ガーデン、アン・アート・ミュージアム、ザ・ノースショア、アンド・シー・ア・ショー。</div>
+          <div class="qa-mean">ビーチ、植物園、美術館、ノースショアに行き、ショーを見ます。</div>
         </div>
         <div class="qa-card">
           <div class="qa-q">Q. What is your job?</div>
@@ -1970,9 +1950,9 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
               <div class="qa-q">Q. What are you planning to do in Hawaii?</div>
               <div class="qa-pron">ワット・アー・ユー・プラニング・トゥ・ドゥー・イン・ハワイ？</div>
               <div class="qa-mean">ハワイでは何をする予定ですか？</div>
-              <div class="qa-a" style="margin-top:8px;">A. We plan to visit the beaches, Kualoa Ranch, and the North Shore. We will also go shopping and see a show.</div>
-              <div class="qa-pron">ウィー・プラン・トゥ・ヴィジット・ザ・ビーチズ、クアロアランチ、アンド・ザ・ノースショア。ウィー・ウィル・オールソー・ゴー・ショッピング・アンド・シー・ア・ショー。</div>
-              <div class="qa-mean">ビーチ、クアロアランチ、ノースショアを訪れ、ショッピングとショーも楽しむ予定です。</div>
+              <div class="qa-a" style="margin-top:8px;">A. We plan to visit beaches, a botanical garden, an art museum, and the North Shore. We will also go shopping and see a show.</div>
+              <div class="qa-pron">ウィー・プラン・トゥ・ヴィジット・ビーチズ、ア・ボタニカル・ガーデン、アン・アート・ミュージアム、アンド・ザ・ノースショア。ウィー・ウィル・オールソー・ゴー・ショッピング・アンド・シー・ア・ショー。</div>
+              <div class="qa-mean">ビーチ、植物園、美術館、ノースショアを訪れ、買い物とショーも楽しむ予定です。</div>
             </div>
             <div class="qa-card">
               <div class="qa-q">Q. Are you going to work or study in the United States?</div>
@@ -2136,14 +2116,14 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
               <tr><td>Is this medicine likely to cause drowsiness?</td><td>이 약은 졸음을 유발하나요?</td><td>この薬は眠くなりますか？</td></tr>
             </tbody>
           </table></div>
-          <p style="font-size:.84rem; margin-top:8px;"><b>상비약:</b> 해열진통제, 소화제, 지사제, 멀미약, 알레르기약, 밴드·거즈, 소독제, 벌레 물림 연고, 근육통 파스, 개인 처방약, 인공눈물, 자외선 화상 진정제</p>
+          <p style="font-size:.84rem; margin-top:8px;"><b>상비약:</b> 개인 처방약, 밴드·거즈, 인공눈물 등. 임신 중 복용하거나 피부에 바르는 약은 출발 전 담당 산부인과에 확인하세요.</p>
         </div>
       </details>
 
       <details class="safety">
         <summary>📄 여행자보험·청구 서류<span class="chev">⌄</span></summary>
         <div class="safety-body">
-          <p style="font-size:.85rem;"><b>가입 확인:</b> 해외 질병/상해 치료, 응급실, 구급차, 의료후송, 항공편 지연, 수하물 지연·분실, 휴대품 손해, 배상책임, 패러세일링·스노클링·UTV 보장 여부</p>
+          <p style="font-size:.85rem;"><b>가입 확인:</b> 해외 질병/상해 치료, 임신 관련 진료·응급상황 보장 범위, 응급실, 구급차, 의료후송, 항공편 지연, 수하물 지연·분실, 휴대품 손해, 배상책임</p>
           <p style="font-size:.85rem;"><b>청구 보관 서류:</b> 진료비 영수증, 진료 상세내역서, 진단서, 처방전, 약국 영수증, 검사결과, 응급실 기록, 구급차 이용 내역, 카드 결제 영수증, 보험사 상담번호</p>
         </div>
       </details>
@@ -2171,41 +2151,15 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
       </details>
 
       <details class="safety">
-        <summary>🤿 하나우마베이 스노클링 안전<span class="chev">⌄</span></summary>
+        <summary>🤰 임신 15주차 여행 중 휴식·진료<span class="chev">⌄</span></summary>
         <div class="safety-body">
-          <p style="font-size:.84rem; font-weight:700;">입수 전</p>
-          <ul class="plain"><li>인명구조원에게 상태 문의</li><li>마스크 누수·스노클 이물질·오리발 크기 확인</li><li>얕은 곳에서 호흡 연습</li><li>두 사람이 서로의 위치 확인, 입·출수 지점 기억</li></ul>
-          <p style="font-size:.84rem; font-weight:700; margin-top:8px;">물속 운영</p>
-          <ul class="plain"><li>두 사람이 서로 시야 안에 머무르기, 너무 먼 곳까지 나가지 않기</li><li>물고기를 무리하게 쫓지 않기, 해양생물 만지지 않기</li><li>호흡이 가빠지면 즉시 중단, 체력 떨어지기 전 해안 복귀</li></ul>
-          <p style="font-size:.84rem; font-weight:700; margin-top:8px;">즉시 물 밖으로: 숨참·답답함, 어지럼증, 가슴통증, 메스꺼움, 시야흐림, 심한피로, 팔다리 힘빠짐, 공포감/과호흡</p>
-        </div>
-      </details>
-
-      <details class="safety">
-        <summary>🪂 패러세일링 안전<span class="chev">⌄</span></summary>
-        <div class="safety-body">
-          <p style="font-size:.84rem; font-weight:700;">출발 전</p>
-          <ul class="plain"><li>업체 운항 확정 메시지, 08:30 체크인 준수</li><li>과식·음주 금지, 선크림 미리 바르기</li><li>헐렁한 모자·액세서리 제거, 휴대전화 방수 스트랩/보관</li><li>직원에게 몸 상태 알리기</li></ul>
-          <p style="font-size:.84rem; font-weight:700; margin-top:8px;">현장 확인</p>
-          <ul class="plain"><li>구명조끼 착용 상태, 하네스 잠금 상태</li><li>이륙·착수 방법, 손 신호, 비상 상황 시 행동</li></ul>
-        </div>
-      </details>
-
-      <details class="safety">
-        <summary>🏍️ 쿠알로아 UTV 안전<span class="chev">⌄</span></summary>
-        <div class="safety-body">
-          <p style="font-size:.84rem; font-weight:700;">권장 복장</p>
-          <ul class="plain"><li>운동화, 긴바지 또는 움직이기 편한 하의</li><li>먼지 묻어도 되는 상의, 선글라스, 마스크/목가림천, 선크림, 작은 수건</li></ul>
-          <p style="font-size:.84rem; font-weight:700; margin-top:8px;">투어 중</p>
-          <ul class="plain"><li>안전벨트 계속 착용, 팔다리를 밖으로 내밀지 않기</li><li>앞차·안내자 속도 유지, 촬영 위해 몸을 밖으로 기울이지 않기</li><li>진동이 심하면 즉시 직원에게 알리기</li></ul>
-        </div>
-      </details>
-
-      <details class="safety">
-        <summary>⛰ 다이아몬드헤드 트레킹 안전<span class="chev">⌄</span></summary>
-        <div class="safety-body">
-          <p style="font-size:.84rem;"><b>준비물:</b> 운동화, 생수, 모자, 선글라스, 자외선 차단제, 완충된 휴대전화, 예약 확인 화면, 작은 간식</p>
-          <p style="font-size:.84rem; margin-top:6px;"><b>즉시 쉬어야 하는 증상:</b> 두통, 어지럼증, 메스꺼움, 근육 경련, 심한 갈증, 비정상적인 두근거림, 숨이 잘 돌아오지 않음, 갑작스러운 무기력</p>
+          <ul class="plain">
+            <li>출발 전 담당 산부인과에 항공편과 여행 동선을 공유하고 약·활동 제한을 확인하세요.</li>
+            <li>더운 곳에서는 야외 체류를 짧게 하고, 그늘이나 실내에서 쉬며 수분을 챙기세요.</li>
+            <li>산전 진료 기록, 담당 의료진 연락처, 임신 관련 보장 범위를 확인한 보험 정보를 휴대하세요.</li>
+            <li>몸이 불편하면 선택 일정을 중단하고 진료를 받으세요. 긴급 상황은 911입니다.</li>
+          </ul>
+          <p style="font-size:.78rem; margin-top:8px;">참고: <a href="https://www.cdc.gov/yellow-book/hcp/family-travel/pregnant-travelers.html" target="_blank" rel="noopener noreferrer">CDC 임신 중 여행 안내 ↗</a></p>
         </div>
       </details>
 
@@ -2271,10 +2225,14 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
             <li><input type="checkbox" id="g-doc-4"><label for="g-doc-4">왕복 항공권 PDF 저장</label></li>
             <li><input type="checkbox" id="g-doc-5"><label for="g-doc-5">호텔 3곳 예약 확인서 저장</label></li>
             <li><input type="checkbox" id="g-doc-6"><label for="g-doc-6">여행자보험 가입증명서·24시간 긴급전화 저장</label></li>
-            <li><input type="checkbox" id="g-doc-7"><label for="g-doc-7">패러세일링·쿠알로아 UTV·아우아나·렌터카 예약서 저장</label></li>
+            <li><input type="checkbox" id="g-doc-7-v2"><label for="g-doc-7-v2">아우아나·훌라쇼·렌터카 예약 정보 저장</label></li>
             <li><input type="checkbox" id="g-doc-8"><label for="g-doc-8">중요 예약서 오프라인 열람 가능 여부 확인</label></li>
             <li><input type="checkbox" id="g-doc-9"><label for="g-doc-9">여권 사본 휴대전화+클라우드 저장</label></li>
             <li><input type="checkbox" id="g-doc-10"><label for="g-doc-10">가족에게 여행일정 공유</label></li>
+            <li><input type="checkbox" id="g-doc-11"><label for="g-doc-11">여권 사진 페이지 종이 사본</label></li>
+            <li><input type="checkbox" id="g-doc-12"><label for="g-doc-12">ESTA 승인 화면·신청 번호 저장</label></li>
+            <li><input type="checkbox" id="g-doc-13"><label for="g-doc-13">입국심사용 여행 일정표 오프라인 저장</label></li>
+            <li><input type="checkbox" id="g-doc-14"><label for="g-doc-14">호텔 이름·주소·전화번호와 긴급 연락처 목록 저장</label></li>
           </ul>
         </div>
       </details>
@@ -2290,6 +2248,8 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
             <li><input type="checkbox" id="g-cabin-5"><label for="g-cabin-5">얇은 겉옷·목베개·수면안대</label></li>
             <li><input type="checkbox" id="g-cabin-6"><label for="g-cabin-6">간단 세면용품·마스크·물티슈</label></li>
             <li><input type="checkbox" id="g-cabin-7"><label for="g-cabin-7">여벌 속옷과 상의 1벌·펜</label></li>
+            <li><input type="checkbox" id="g-cabin-8"><label for="g-cabin-8">귀마개·기내용 압박양말·슬리퍼</label></li>
+            <li><input type="checkbox" id="g-cabin-9"><label for="g-cabin-9">기내 반입 가방</label></li>
           </ul>
         </div>
       </details>
@@ -2298,13 +2258,94 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
         <summary>🧳 위탁수하물<span class="chev">⌄</span></summary>
         <div class="safety-body">
           <ul class="checklist">
-            <li><input type="checkbox" id="g-check-1"><label for="g-check-1">의류 일습 (반팔/반바지/긴바지/얇은 긴팔/바람막이/속옷/양말/잠옷)</label></li>
-            <li><input type="checkbox" id="g-check-2"><label for="g-check-2">수영복·래시가드, 공연 관람용 단정한 복장</label></li>
-            <li><input type="checkbox" id="g-check-3"><label for="g-check-3">운동복·여벌 운동화·샌들 또는 슬리퍼</label></li>
+            <li><input type="checkbox" id="g-check-1"><label for="g-check-1">의류 일습 (1인 기준 옷 5세트·잠옷 3세트·속옷 6세트·양말 6켤레, 반팔/반바지/긴바지/얇은 긴팔/바람막이)</label></li>
+            <li><input type="checkbox" id="g-check-2"><label for="g-check-2">수영복 2세트·래시가드, 공연 관람용 단정한 복장</label></li>
+            <li><input type="checkbox" id="g-check-3"><label for="g-check-3">운동복·여벌 운동화·비치 샌들</label></li>
             <li><input type="checkbox" id="g-check-4"><label for="g-check-4">모자·선글라스·자외선 차단제</label></li>
             <li><input type="checkbox" id="g-check-5"><label for="g-check-5">휴대용 물병·작은 수건·방수팩·방수 휴대전화 스트랩</label></li>
             <li><input type="checkbox" id="g-check-6"><label for="g-check-6">물티슈·젖은 옷 보관용 가방</label></li>
             <li><input type="checkbox" id="g-check-7"><label for="g-check-7">접이식 우산 또는 가벼운 우비</label></li>
+            <li><input type="checkbox" id="g-check-8"><label for="g-check-8">액세서리·신발용 방수 가방·비닐봉투</label></li>
+            <li><input type="checkbox" id="g-check-9"><label for="g-check-9">시내 관광용 숄더백·비치용 소형 가방·방수 드라이백</label></li>
+            <li><input type="checkbox" id="g-check-10"><label for="g-check-10">접이식 검은 가방·캐리어 네임택·휴대용 디지털 저울·지퍼백</label></li>
+            <li><input type="checkbox" id="g-check-11"><label for="g-check-11">수영복 위에 입을 옷·아쿠아슈즈</label></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="safety">
+        <summary>🧴 스킨케어·헤어·렌즈<span class="chev">⌄</span></summary>
+        <div class="safety-body">
+          <ul class="checklist">
+            <li><input type="checkbox" id="g-beauty-1"><label for="g-beauty-1">세안제·메이크업 클렌징 제품</label></li>
+            <li><input type="checkbox" id="g-beauty-2"><label for="g-beauty-2">토너·세럼·로션 또는 보습크림</label></li>
+            <li><input type="checkbox" id="g-beauty-3"><label for="g-beauty-3">핸드크림·바디크림·나이트 립밤·휴대용 거울</label></li>
+            <li><input type="checkbox" id="g-beauty-4"><label for="g-beauty-4">몸용 자외선 차단제·덧바르기용 선스틱·SPF 립밤</label></li>
+            <li><input type="checkbox" id="g-beauty-5"><label for="g-beauty-5">애프터선 젤·알로에 젤·진정 팩</label></li>
+            <li><input type="checkbox" id="g-beauty-6"><label for="g-beauty-6">샴푸·컨디셔너·moremo 헤어 오일</label></li>
+            <li><input type="checkbox" id="g-beauty-7"><label for="g-beauty-7">헤어브러시·머리끈·헤어핀·족집게</label></li>
+            <li><input type="checkbox" id="g-beauty-8"><label for="g-beauty-8">메이크업 용품·메이크업 스펀지·브러시</label></li>
+            <li><input type="checkbox" id="g-beauty-9"><label for="g-beauty-9">렌즈 보존액·렌즈 케이스·예비 렌즈·안경 케이스</label></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="safety">
+        <summary>🪥 세면·위생·세탁<span class="chev">⌄</span></summary>
+        <div class="safety-body">
+          <ul class="checklist">
+            <li><input type="checkbox" id="g-hygiene-1"><label for="g-hygiene-1">칫솔·치약·바디워시·샤워타월</label></li>
+            <li><input type="checkbox" id="g-hygiene-2"><label for="g-hygiene-2">코라후루용 거품 펌프·세안용 헤어밴드</label></li>
+            <li><input type="checkbox" id="g-hygiene-3"><label for="g-hygiene-3">팬티라이너·항문 세정 티슈</label></li>
+            <li><input type="checkbox" id="g-hygiene-4"><label for="g-hygiene-4">휴대용 티슈·얼굴/몸용 보디시트</label></li>
+            <li><input type="checkbox" id="g-hygiene-5"><label for="g-hygiene-5">여행용 세제 시트·세탁망</label></li>
+            <li><input type="checkbox" id="g-hygiene-6"><label for="g-hygiene-6">휴대용 빨랫줄·빨래집게</label></li>
+            <li><input type="checkbox" id="g-hygiene-7"><label for="g-hygiene-7">탈취 스프레이·의류 압축팩·세탁물 분리 봉투</label></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="safety">
+        <summary>💊 건강·구급용품<span class="chev">⌄</span></summary>
+        <div class="safety-body">
+          <p style="font-size:.8rem; margin:8px 0;">임신 중 복용하거나 피부에 바르는 약·제품은 출발 전 담당 산부인과에 확인하세요.</p>
+          <ul class="checklist">
+            <li><input type="checkbox" id="g-health-1"><label for="g-health-1">확인받은 영양제·입덧 관련 약</label></li>
+            <li><input type="checkbox" id="g-health-2"><label for="g-health-2">확인받은 두통약·해열진통제·위장약</label></li>
+            <li><input type="checkbox" id="g-health-3"><label for="g-health-3">목캔디·안약</label></li>
+            <li><input type="checkbox" id="g-health-4"><label for="g-health-4">벌레 퇴치제·벌레 물린 약</label></li>
+            <li><input type="checkbox" id="g-health-5"><label for="g-health-5">반창고·소독 티슈</label></li>
+            <li><input type="checkbox" id="g-health-6"><label for="g-health-6">땀 닦는 시트·휴족시간·목 쿨링 시트</label></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="safety">
+        <summary>🍚 가져갈 식품·식기 (2인 기준)<span class="chev">⌄</span></summary>
+        <div class="safety-body">
+          <ul class="checklist">
+            <li><input type="checkbox" id="g-food-1"><label for="g-food-1">즉석밥 6개·컵라면 6개</label></li>
+            <li><input type="checkbox" id="g-food-2"><label for="g-food-2">인스턴트 미소국·수프 6인분</label></li>
+            <li><input type="checkbox" id="g-food-3"><label for="g-food-3">개별 포장 김·후리카케·오차즈케</label></li>
+            <li><input type="checkbox" id="g-food-4"><label for="g-food-4">티백·포카리 또는 경구수분보충 분말·입덧 관련 음식</label></li>
+            <li><input type="checkbox" id="g-food-5"><label for="g-food-5">나무젓가락·일회용 숟가락·포크·텀블러</label></li>
+            <li><input type="checkbox" id="g-food-6"><label for="g-food-6">가져갈 식품의 반입 가능 여부·원재료 확인</label></li>
+            <li><input type="checkbox" id="g-food-7"><label for="g-food-7">식품은 미개봉·원재료 표시 상태로 한곳에 모아두기</label></li>
+            <li><input type="checkbox" id="g-food-8"><label for="g-food-8">미국 입국 시 가져온 모든 식품 신고</label></li>
+          </ul>
+          <p style="font-size:.78rem; margin:8px 0 0;">신고와 반입 허용은 별개입니다. 제품별 반입 가능 여부를 출발 전에 확인하세요.</p>
+        </div>
+      </details>
+
+      <details class="safety">
+        <summary>🔌 전자기기·통신<span class="chev">⌄</span></summary>
+        <div class="safety-body">
+          <ul class="checklist">
+            <li><input type="checkbox" id="g-tech-1"><label for="g-tech-1">예비 충전 케이블·USB 멀티포트 충전기</label></li>
+            <li><input type="checkbox" id="g-tech-2"><label for="g-tech-2">미국용 A타입 변환 플러그</label></li>
+            <li><input type="checkbox" id="g-tech-3"><label for="g-tech-3">보조배터리 보관용 지퍼백·절연테이프</label></li>
+            <li><input type="checkbox" id="g-tech-4"><label for="g-tech-4">스마트폰 삼각대·블루투스 리모컨</label></li>
+            <li><input type="checkbox" id="g-tech-5"><label for="g-tech-5">eSIM 또는 해외용 SIM 준비·개통 방법 확인</label></li>
           </ul>
         </div>
       </details>
@@ -2318,6 +2359,18 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
             <li><input type="checkbox" id="g-pay-3"><label for="g-pay-3">해외 승인 알림 설정, 카드사 분실신고 번호 저장</label></li>
             <li><input type="checkbox" id="g-pay-4"><label for="g-pay-4">남편과 아내 카드 분산 소지</label></li>
             <li><input type="checkbox" id="g-pay-5"><label for="g-pay-5">약 $200~300 현금, $1·$5·$10 지폐 섞어서 준비</label></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="safety">
+        <summary>🏠 출발 전 추가 확인<span class="chev">⌄</span></summary>
+        <div class="safety-body">
+          <ul class="checklist">
+            <li><input type="checkbox" id="g-before-1"><label for="g-before-1">위탁수하물 허용 무게·보조배터리 반입 규정 확인</label></li>
+            <li><input type="checkbox" id="g-before-2"><label for="g-before-2">Luana Waikiki 객실 전자레인지 확인</label></li>
+            <li><input type="checkbox" id="g-before-3"><label for="g-before-3">집 문단속·가스·전기·냉장고 확인</label></li>
+            <li><input type="checkbox" id="g-before-4"><label for="g-before-4">캐리어 잠금·공항 이동 방법·출발 터미널 확인</label></li>
           </ul>
         </div>
       </details>
@@ -2352,7 +2405,7 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
             <thead><tr><th>시점</th><th>확인할 항목</th></tr></thead>
             <tbody>
               <tr><td>출국 1~2개월 전</td><td>ESTA·여권·여행자보험</td></tr>
-              <tr><td>예약 오픈 시</td><td>다이아몬드헤드 10/17, 하나우마베이 10/22</td></tr>
+              <tr><td>방문 전</td><td>KCC·미술관·식물원 운영 여부와 별 관찰 행사 확인</td></tr>
               <tr><td>출국 1주 전</td><td>호텔·렌터카·액티비티 전체</td></tr>
               <tr><td>출국 48시간 전</td><td>항공편·날씨</td></tr>
               <tr><td>각 투어 전날</td><td>운항 여부·체크인 장소</td></tr>
@@ -2368,7 +2421,7 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
   <div class="footer-note">
     2026 Hawaii Honeymoon Guide · Oahu · 원본: Hawaii_Honeymoon_Complete_Master_Guide.md<br>
     체크박스 상태는 이 기기의 브라우저에만 저장됩니다 (localStorage, 서버 전송 없음).<br>
-    Last updated: 2026-07-27
+    Last updated: 2026-10-04
   </div>
 
 </main>
@@ -2423,13 +2476,107 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
   });
   showView(location.hash.slice(1) || 'home');
 
+  // ---- Daily Google Maps links and readable offline addresses ----
+  var P = {
+    icn:'Incheon International Airport Terminal 1, Incheon, South Korea',
+    hnl:'Daniel K. Inouye International Airport Terminal 2, Honolulu, HI',
+    circle:'2464 Kalakaua Ave, Honolulu, HI 96815',
+    kcc:'KCC Farmers Market, 4303 Diamond Head Rd, Honolulu, HI 96816',
+    park:'Kapiolani Regional Park, Honolulu, HI',
+    ala:'Ala Moana Center, 1450 Ala Moana Blvd, Honolulu, HI 96814',
+    magic:'Magic Island, Ala Moana Beach Park, Honolulu, HI',
+    soha:'SoHa Keiki, 226 Lewers St, Honolulu, HI 96815',
+    hop:'Hopscotch, 1170 Auahi St #155, Honolulu, HI 96814',
+    royal:'Royal Hawaiian Center Building A, 2201 Kalakaua Ave, Honolulu, HI 96815',
+    thrift:'Thrifty Car Rental, 300 Rodgers Blvd Unit 4, Honolulu, HI 96819',
+    makapuu:'Makapuu Lookout, Kalanianaole Hwy, Waimanalo, HI',
+    waimanalo:'Waimanalo Beach Park, Waimanalo, HI',
+    kailua:'Kailua Beach Park, Kailua, HI',
+    lanikai:'Lanikai Beach, Kailua, HI',
+    modern:'1775 Ala Moana Blvd, Honolulu, HI 96815',
+    garden:'Hoomaluhia Botanical Garden, 45-680 Luluku Rd, Kaneohe, HI 96744',
+    kahuku:'Kahuku, HI',
+    sunset:'Sunset Beach Park, Haleiwa, HI',
+    shark:'Sharks Cove, Haleiwa, HI',
+    laniakea:'Laniakea Beach, Haleiwa, HI',
+    haleiwa:'Haleiwa, HI',
+    show:'OUTRIGGER Waikiki Beachcomber Hotel, 2300 Kalakaua Ave, Honolulu, HI 96815',
+    museum:'Honolulu Museum of Art, 900 S Beretania St, Honolulu, HI 96814',
+    luana:'2045 Kalakaua Ave, Honolulu, HI 96815',
+    donki:'Don Quijote, 801 Kaheka St, Honolulu, HI 96814'
+  };
+  var ROUTES = {
+    'day-00':{links:[{label:'인천공항 제1터미널 지도',query:P.icn}],addresses:[['인천공항 T1',P.icn]]},
+    'day-01':{links:[{label:'공항 → Waikiki Circle',from:P.hnl,to:P.circle}],addresses:[['와이키키 서클 호텔',P.circle]]},
+    'day-02':{links:[
+      {label:'오전 KCC·공원',from:P.circle,via:[P.kcc,P.park],to:P.circle},
+      {label:'호텔 → 알라모아나',from:P.circle,to:P.ala},
+      {label:'알라모아나 → 관람 지점',from:P.ala,to:P.magic,mode:'walking'}
+    ],addresses:[['KCC',P.kcc],['매직아일랜드',P.magic]]},
+    'day-03':{links:[
+      {label:'호텔 → SoHa Keiki',from:P.circle,to:P.soha,mode:'walking'},
+      {label:'SoHa Keiki → Hopscotch',from:P.soha,to:P.hop},
+      {label:'호텔 → 별 관찰',from:P.circle,to:P.royal,mode:'walking'}
+    ],addresses:[['SoHa Keiki',P.soha],['Hopscotch',P.hop],['별 관찰 A동 4층',P.royal]]},
+    'day-04':{links:[
+      {label:'호텔 → 렌터카 인수',from:P.circle,to:P.thrift},
+      {label:'동부 해안 → The Modern',from:P.thrift,via:[P.makapuu,P.waimanalo,P.kailua],to:P.modern},
+      {label:'라니카이 경유 (선택)',from:P.kailua,via:[P.lanikai],to:P.modern}
+    ],addresses:[['렌터카 인수',P.thrift],['마카푸우 도로변 전망대',P.makapuu],['The Modern',P.modern]]},
+    'day-05':{links:[
+      {label:'식물원 → 노스쇼어 동쪽',from:P.modern,via:[P.garden,P.kahuku,P.sunset],to:P.shark},
+      {label:'노스쇼어 서쪽 → 반납',from:P.shark,via:[P.laniakea,P.haleiwa],to:P.thrift},
+      {label:'해변 생략 경로',from:P.modern,via:[P.garden,P.haleiwa],to:P.thrift}
+    ],addresses:[['호오말루히아 식물원',P.garden],['할레이바',P.haleiwa],['렌터카 반납',P.thrift]]},
+    'day-06':{links:[{label:'호텔 → ʻAuana 공연장',from:P.modern,to:P.show}],addresses:[['공연장',P.show]]},
+    'day-07':{links:[{label:'호텔 ↔ 미술관',from:P.modern,via:[P.museum],to:P.modern}],addresses:[['호놀룰루 미술관',P.museum]]},
+    'day-08':{links:[{label:'The Modern → Luana',from:P.modern,to:P.luana}],addresses:[['Luana Waikiki',P.luana]]},
+    'day-09':{links:[{label:'자유 쇼핑 이동',from:P.luana,via:[P.ala,P.donki],to:P.luana}],addresses:[['알라모아나 센터',P.ala],['돈키호테',P.donki]]},
+    'day-10':{links:[{label:'Luana → HNL 제2터미널',from:P.luana,to:P.hnl}],addresses:[['호놀룰루 공항 T2',P.hnl]]},
+    'day-11':{links:[{label:'인천공항 제1터미널 지도',query:P.icn}],addresses:[['인천공항 T1',P.icn]]}
+  };
+  function googleMapsUrl(route){
+    var url = new URL(route.query ? 'https://www.google.com/maps/search/' : 'https://www.google.com/maps/dir/');
+    url.searchParams.set('api','1');
+    if(route.query){ url.searchParams.set('query',route.query); }
+    else {
+      url.searchParams.set('origin',route.from);
+      url.searchParams.set('destination',route.to);
+      url.searchParams.set('travelmode',route.mode || 'driving');
+      if(route.via && route.via.length) url.searchParams.set('waypoints',route.via.join('|'));
+    }
+    return url.toString();
+  }
+  document.querySelectorAll('.route-tools[data-route-day]').forEach(function(box){
+    var route = ROUTES[box.getAttribute('data-route-day')];
+    if(!route) return;
+    var title = document.createElement('div'); title.className='route-tools__title'; title.textContent='🗺 오늘의 이동'; box.appendChild(title);
+    var links = document.createElement('div'); links.className='route-tools__links';
+    route.links.forEach(function(item){
+      var a = document.createElement('a'); a.className='map-btn'; a.href=googleMapsUrl(item);
+      a.target='_blank'; a.rel='noopener noreferrer'; a.textContent=item.label; links.appendChild(a);
+    });
+    box.appendChild(links);
+    var details = document.createElement('details');
+    var summary = document.createElement('summary'); summary.textContent='주소 보기·복사'; details.appendChild(summary);
+    route.addresses.forEach(function(item){
+      var row = document.createElement('div'); row.className='route-address';
+      var address = document.createElement('span'); address.textContent=item[0]+' · '+item[1]; row.appendChild(address);
+      var button = document.createElement('button'); button.type='button'; button.className='addr-copy';
+      button.setAttribute('data-copy',item[1]); button.textContent='주소 복사'; row.appendChild(button);
+      details.appendChild(row);
+    });
+    box.appendChild(details);
+    var note = document.createElement('p'); note.className='route-note'; note.textContent='지도 길찾기는 인터넷 연결이 필요합니다. 오프라인에서는 아래 주소를 확인하세요.'; box.appendChild(note);
+  });
+
   // ---- Checkbox persistence ----
   var checkboxes = document.querySelectorAll('input[type=checkbox][id]');
   checkboxes.forEach(function(cb){
     var key = STORAGE_PREFIX + cb.id;
-    if(localStorage.getItem(key) === '1'){ cb.checked = true; }
+    try{ if(localStorage.getItem(key) === '1'){ cb.checked = true; } }catch(e){}
     cb.addEventListener('change', function(){
-      localStorage.setItem(key, cb.checked ? '1' : '0');
+      try{ localStorage.setItem(key, cb.checked ? '1' : '0'); }catch(e){}
     });
   });
 
@@ -2438,9 +2585,9 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
   if(resetBtn){
     resetBtn.addEventListener('click', function(){
       if(!confirm('이 화면의 체크 상태를 초기화할까요?')) return;
-      checkboxes.forEach(function(cb){
+      document.querySelectorAll('#view-checklist input[type=checkbox][id]').forEach(function(cb){
         cb.checked = false;
-        localStorage.removeItem(STORAGE_PREFIX + cb.id);
+        try{ localStorage.removeItem(STORAGE_PREFIX + cb.id); }catch(e){}
       });
     });
   }
@@ -2617,15 +2764,15 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
   document.querySelectorAll('.addr-copy').forEach(function(btn){
     btn.addEventListener('click', function(){
       var text = btn.getAttribute('data-copy');
-      var done = function(){
+      var done = function(copied){
         var old = btn.textContent;
-        btn.textContent = '✅ 복사됨';
+        btn.textContent = copied ? '✅ 복사됨' : '복사 실패 · 주소를 길게 눌러 복사';
         setTimeout(function(){ btn.textContent = old; }, 1400);
       };
       if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(text).then(done).catch(function(){ fallbackCopy(text); done(); });
+        navigator.clipboard.writeText(text).then(function(){ done(true); }).catch(function(){ done(fallbackCopy(text)); });
       } else {
-        fallbackCopy(text); done();
+        done(fallbackCopy(text));
       }
     });
   });
@@ -2633,8 +2780,10 @@ details.safety[open] .chev{transform:rotate(180deg); color:var(--ocean);}
     var ta = document.createElement('textarea');
     ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
     document.body.appendChild(ta); ta.select();
-    try{ document.execCommand('copy'); }catch(e){}
+    var copied = false;
+    try{ copied = document.execCommand('copy'); }catch(e){}
     document.body.removeChild(ta);
+    return copied;
   }
 })();
 </script>
